@@ -13,11 +13,7 @@ function App() {
   }
   
   function removeTextFromList(id){
-    setList(prev=>{
-      return prev.filter((elem,index)=>{
-        return index != id
-      })
-    })
+    setList(prev=>prev.filter((elem,index)=>index != id))
   }
 
   return (
@@ -26,7 +22,9 @@ function App() {
       <TextField value={text} onChange={setText}/> 
       <Button innerText="Create Item" onClick={saveTextToList}/>
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-auto rounded-sm">
-        {list.map((elem, index)=><Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>)}
+        {list.map((elem, index)=>
+        <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
+        )}
       </div>
     </div>
   )
