@@ -26,7 +26,7 @@ function App() {
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
       <h1 className='text-3xl font-bold underline pt-6 pb-3 text-center'>To Do List</h1>
 
-      <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-auto rounded-sm">
+      <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-sm">
         {list.map((elem, index)=>
           <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
