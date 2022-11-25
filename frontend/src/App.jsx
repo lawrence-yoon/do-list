@@ -17,14 +17,17 @@ function App() {
   }
 
   return (
-    <div className='container flex flex-col p-2 mx-auto h-screen w-screen text-white bg-gray-700 md:w-[640px]'>
+    <div className='body container flex flex-col p-2 mx-auto min-h-screen w-screen text-white bg-gray-700 md:w-[640px]'>
       <h1 className='text-3xl font-bold underline pt-6 pb-3 text-center'>To Do List</h1>
-      <TextField value={text} onChange={setText}/> 
-      <Button innerText="Create Item" onClick={saveTextToList}/>
+
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-auto rounded-sm">
         {list.map((elem, index)=>
         <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
+      </div>
+      <div className='flex justify-center'>
+        <TextField value={text} onChange={setText}/> 
+        <Button innerText="Post" onClick={saveTextToList}/>
       </div>
     </div>
   )

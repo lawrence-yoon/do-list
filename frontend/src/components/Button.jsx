@@ -1,7 +1,7 @@
 function Button({innerText, onClick=()=>{}}){
     return (
         <button 
-            className="border-none bg-gray-800 text-sm font-semibold p-2 pb-2.5 px-4 rounded-full m-1 mb-3 mx-auto block hover:bg-gray-900" 
+            className="border border-transparent bg-gray-800 text-sm font-semibold pb-0.5 px-4 rounded-full m-2 block hover:bg-gray-900 hover:border-white" 
             onClick={onClick}
         >{innerText}</button>
     )
