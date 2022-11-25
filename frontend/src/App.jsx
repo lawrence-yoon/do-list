@@ -12,13 +12,21 @@ function App() {
     setText("")
   }
   
+  function removeTextFromList(id){
+    setList(prev=>{
+      return prev.filter((elem,index)=>{
+        return index != id
+      })
+    })
+  }
+
   return (
-    <div className='container text-center'>
-      <h1 className='text-3xl font-bold underline mt-6 mb-3'>To Do List</h1>
+    <div className='container flex flex-col p-2 mx-auto h-screen w-screen text-white bg-gray-700 md:w-[640px]'>
+      <h1 className='text-3xl font-bold underline pt-6 pb-3 text-center'>To Do List</h1>
       <TextField value={text} onChange={setText}/> 
-      <Button innerText="Submit" onClick={saveTextToList}/>
-      <div className="container">
-        {list.map(elem=><Note entry={elem}/>)}
+      <Button innerText="Create Item" onClick={saveTextToList}/>
+      <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-auto rounded-sm">
+        {list.map((elem, index)=><Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>)}
       </div>
     </div>
   )
