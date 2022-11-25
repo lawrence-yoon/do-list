@@ -23,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className='body container flex flex-col p-2 mx-auto h-screen w-screen text-white bg-gray-700 md:w-[640px]'>
+    <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
       <h1 className='text-3xl font-bold underline pt-6 pb-3 text-center'>To Do List</h1>
 
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-auto rounded-sm">
