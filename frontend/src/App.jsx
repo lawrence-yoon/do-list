@@ -16,6 +16,12 @@ function App() {
     setList(prev=>prev.filter((elem,index)=>index != id))
   }
 
+  function keyDownHandler(keyPress){
+    if(keyPress=="Enter"){
+      saveTextToList()
+    }
+  }
+
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen w-screen text-white bg-gray-700 md:w-[640px]'>
       <h1 className='text-3xl font-bold underline pt-6 pb-3 text-center'>To Do List</h1>
@@ -26,7 +32,7 @@ function App() {
         )}
       </div>
       <div className='flex justify-center'>
-        <TextField value={text} onChange={setText}/> 
+        <TextField value={text} onChange={setText} onKeyDown={keyDownHandler}/> 
         <Button innerText="Post" onClick={saveTextToList}/>
       </div>
     </div>
