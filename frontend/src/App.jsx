@@ -24,7 +24,16 @@ function App() {
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
-      <h1 className='text-3xl font-bold underline pt-6 pb-3 text-center'>To Do List</h1>
+      <nav className='container flex flex-row justify-between'>
+        <NavbarLinks label="To Do List"/>
+        <div className="flex">
+          <NavbarLinks label="Log In"/>
+          <NavbarLinks label="Log Out"/>
+          <NavbarLinks label="Register"/>
+          <NavbarLinks label="About"/>
+        </div>
+      </nav>
+      <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>To Do List</h1>
 
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
         {list.map((elem, index)=>
@@ -39,7 +48,11 @@ function App() {
   )
 }
 
-
+function NavbarLinks({href, label}){
+  return (
+    <a className="border block" href={href}> {label} </a>
+  )
+}
 
 
 
