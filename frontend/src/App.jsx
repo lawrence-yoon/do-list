@@ -3,7 +3,7 @@ import TextField from './components/TextField'
 import ButtonPost from './components/ButtonPost'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
-import {ButtonNotebook, ButtonIcon} from './components/Button'
+import Button, {ButtonNotebook} from './components/Button'
 import { SlAnchor, SlBell, SlBasket } from 'react-icons/sl'
 import NavBar from './components/NavBar'
 
@@ -38,11 +38,39 @@ function App() {
   }
 
   function ButtonAnchor(){
-    return <ButtonIcon icon={<SlAnchor/>} onClick={saveTextToList}/>
+    return <Button icon={<SlAnchor/>} onClick={saveTextToList}/>
   }
 
-  const ButtonBasket = ()=> <ButtonIcon icon={<SlBasket/>} onClick={saveTextToList}/>
+  //i think this is the way to go. the function that was imported to have one function declared like the below constant, and the other export which will be default export is the Button Function. 
+  const ButtonBasket = ()=> <Button icon={<SlBasket/>} onClick={saveTextToList}/>
   
+
+  function withLabel(Component){
+    return function({label, ...rest }){
+      return (
+        <>
+          <label>
+            {label}
+          </label>
+          <Component {...rest}/>
+        </>
+      )
+    }
+  }
+
+  function withLabelHello(Component){
+    return function WrappedComponent(){
+      return (<>
+        <label className='block'>
+          Hello
+        </label>
+        <Component/>
+      </>)
+    }
+  }
+
+  const ButtonBasketWithLabel = withLabelHello(ButtonBasket)
+  const ButtonBasketWithLabel2 = withLabel(ButtonBasket)
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
@@ -63,11 +91,13 @@ function App() {
         <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
         <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
         <div className='flex justify-end'>
-          <ButtonPost onClick={saveTextToList}/>
+          {/* <ButtonPost onClick={saveTextToList}/>
           <ButtonNotebook onClick={saveTextToList}/>
-          <ButtonIcon icon={<SlBell/>} onClick={saveTextToList}/>
+          <Button icon={<SlBell/>} onClick={saveTextToList}/> */}
           <ButtonAnchor/>
           <ButtonBasket/>
+          <ButtonBasketWithLabel/>
+          <ButtonBasketWithLabel2 label="Goodbye"/>
         </div>
       </div>
     </div>

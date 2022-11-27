@@ -22,7 +22,7 @@ export function ButtonNotebook({onClick=()=>{}}){
   )
 }
 
-export function ButtonIcon({icon, onClick=()=>{}}){
+export default function Button({icon, onClick=()=>{}}){
   return (
       <button 
           className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
@@ -30,16 +30,5 @@ export function ButtonIcon({icon, onClick=()=>{}}){
       >
       {icon}
       </button>
-  )
-}
-
-
-
-function Button() {
-  return (
-        <button 
-            className="border border-transparent bg-gray-800 text-sm font-semibold pb-0.5 px-4 m-1 rounded-full block hover:bg-gray-900 hover:border-white" 
-            onClick={onClick}
-        >Submit</button>
   )
 }
