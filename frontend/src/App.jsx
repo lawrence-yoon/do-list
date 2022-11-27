@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import TextField from './components/TextField'
-import Button from './components/Button'
+import ButtonPost from './components/ButtonPost'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
+import NavBar from './components/NavBar'
 
 function App() {
   const initialTextState = {
-    title:"type title here",
-    details:"type details here"
+    title:"Untitled",
+    details:""
   }
   const [text, setText] = useState(initialTextState)
   const [list, setList] = useState([])
@@ -36,36 +37,30 @@ function App() {
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
-      <nav className='container flex flex-row justify-between'>
-        <NavbarLinks label="To Do List"/>
-        <div className="flex">
-          <NavbarLinks label="Log In"/>
-          <NavbarLinks label="Log Out"/>
-          <NavbarLinks label="Register"/>
-          <NavbarLinks label="About"/>
-        </div>
-      </nav>
-      <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>To Do List</h1>
-
+      {/* <NavBar/> */}
+      <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>Project 1</h1>
+      <div id="select-list-tab" className='flex flex-row'>
+        <h2>To Do</h2>
+        <h2 className='bg-gray-800 rounded-t-xl px-1'>In Progress</h2>
+        {/* appearance like selectable tabs */}
+        <h2>Done</h2>
+      </div>
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
         {list.map((elem, index)=>
-          <Note key={index} id={index} entry={elem.title} onClick={removeTextFromList}/>
+          <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
       </div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col border rounded-md p-1'>
         <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
         <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
-        <Button innerText="Post" onClick={saveTextToList}/>
+        <div className='flex justify-end'>
+          <ButtonPost onClick={saveTextToList}/>
+        </div>
       </div>
     </div>
   )
 }
 
-function NavbarLinks({href, label}){
-  return (
-    <a className="border block" href={href}> {label} </a>
-  )
-}
 
 
 
