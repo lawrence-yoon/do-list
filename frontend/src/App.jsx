@@ -2,16 +2,28 @@ import { useState } from 'react'
 import TextField from './components/TextField'
 import Button from './components/Button'
 import Note from './components/Note'
+import TextFieldArea from './components/TextFieldArea'
 
 function App() {
-  const [text, setText] = useState("")
+  const initialTextState = {
+    title:"type title here",
+    details:"type details here"
+  }
+  const [text, setText] = useState(initialTextState)
   const [list, setList] = useState([])
 
   function saveTextToList(){
-    setList([...list, text])
-    setText("")
+    setList(prevList=>[...prevList, text])
+    setText(initialTextState)
   }
   
+  function handleTextChange(e){
+    setText(prevText=>({
+      ...prevText,
+      [e.target.name]:e.target.value
+    }))
+  }
+
   function removeTextFromList(id){
     setList(prev=>prev.filter((elem,index)=>index != id))
   }
@@ -37,11 +49,12 @@ function App() {
 
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
         {list.map((elem, index)=>
-          <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
+          <Note key={index} id={index} entry={elem.title} onClick={removeTextFromList}/>
         )}
       </div>
-      <div className='flex justify-center'>
-        <TextField value={text} onChange={setText} onKeyDown={keyDownHandler}/> 
+      <div className='flex flex-col'>
+        <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
+        <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
         <Button innerText="Post" onClick={saveTextToList}/>
       </div>
     </div>

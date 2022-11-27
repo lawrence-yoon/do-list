@@ -1,11 +1,12 @@
-function TextField({value, onChange=()=>{}, onKeyDown=()=>{}}){
+function TextField({name, value, onChange=()=>{}, onKeyDown=()=>{}}){
     return (
       <input 
-        className='text-gray-900 bg-gray-400 border border-transparent w-4/6 p-2 px-4 rounded-full block flex-grow mx-2 hover:border-white' 
+        className='w-auto text-gray-900 bg-gray-400 border border-transparent p-2 px-4 rounded-t-xl block flex-grow hover:border-white' 
+        name={name}
         value={value} 
         autoFocus
-        onChange={e=>{onChange(e.target.value)}}
-        onKeyDown={e=>{onKeyDown(e.key)}}
+        onChange={e=>{onChange(e)}}
+        onKeyDown={e=>{onKeyDown(e)}}
       />
     )
   }
