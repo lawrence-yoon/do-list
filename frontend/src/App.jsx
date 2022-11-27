@@ -3,6 +3,8 @@ import TextField from './components/TextField'
 import ButtonPost from './components/ButtonPost'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
+import {ButtonNotebook, ButtonIcon} from './components/Button'
+import { SlAnchor, SlBell, SlBasket } from 'react-icons/sl'
 import NavBar from './components/NavBar'
 
 function App() {
@@ -35,6 +37,13 @@ function App() {
     }
   }
 
+  function ButtonAnchor(){
+    return <ButtonIcon icon={<SlAnchor/>} onClick={saveTextToList}/>
+  }
+
+  const ButtonBasket = ()=> <ButtonIcon icon={<SlBasket/>} onClick={saveTextToList}/>
+  
+
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
       {/* <NavBar/> */}
@@ -55,6 +64,10 @@ function App() {
         <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
         <div className='flex justify-end'>
           <ButtonPost onClick={saveTextToList}/>
+          <ButtonNotebook onClick={saveTextToList}/>
+          <ButtonIcon icon={<SlBell/>} onClick={saveTextToList}/>
+          <ButtonAnchor/>
+          <ButtonBasket/>
         </div>
       </div>
     </div>
