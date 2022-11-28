@@ -1,4 +1,4 @@
-import {SlPlus, SlList, SlLogin, SlLogout,  SlNote, SlNotebook, SlOptionsVertical, SlOptions, SlMenu } from "react-icons/sl"
+import {SlPlus, SlList, SlLogin, SlLogout,  SlNote, SlNotebook, SlOptionsVertical, SlOptions, SlTrash, SlMenu } from "react-icons/sl"
 
 export function ButtonPlus({onClick=()=>{}}){
     return (
@@ -40,6 +40,17 @@ export function ButtonNotebook({onClick=()=>{}}){
           onClick={onClick}
       >
       <SlNotebook/>
+      </button>
+  )
+}
+
+export function ButtonNote({onClick=()=>{}}){
+  return (
+      <button 
+          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+          onClick={onClick}
+      >
+      <SlNote/>
       </button>
   )
 }

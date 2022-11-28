@@ -3,8 +3,8 @@ import TextField from './components/TextField'
 import ButtonPost from './components/ButtonPost'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
-import Button, {ButtonNotebook, ButtonConfirm, ButtonCancel} from './components/Button'
-import { SlAnchor, SlBell, SlBasket } from 'react-icons/sl'
+import Button from './components/Button'
+import { SlAnchor, SlBasket, SlNote, SlOptions, SlTrash } from 'react-icons/sl'
 import NavBar from './components/NavBar'
 
 function App() {
@@ -14,10 +14,12 @@ function App() {
   }
   const [text, setText] = useState(initialTextState)
   const [list, setList] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   function saveTextToList(){
     setList(prevList=>[...prevList, text])
     setText(initialTextState)
+    setIsModalOpen(false)
   }
   
   function handleTextChange(e){
@@ -37,17 +39,25 @@ function App() {
     }
   }
 
-  
+  function openModal(){
+    setIsModalOpen(true)
+  }
+
+  function closeModal(){
+    setText(initialTextState)
+    setIsModalOpen(false)
+  }
 
   function ButtonAnchor(){
-    return <Button icon={<SlAnchor/>} onClick={saveTextToList}/>
+    return <Button icon={<SlAnchor/>} onClick={openModal}/>
   }
 
   //i think this is the way to go. the function that was imported to have one function declared like the below constant, and the other export which will be default export is the Button Function. 
   const ButtonBasket = ()=> <Button icon={<SlBasket/>} onClick={saveTextToList}/>
   
+  const ButtonNote = ()=> <Button icon={<SlNote/>} onClick={openModal}/>
 
-
+  const ButtonConfirm = ()=><Button icon="Confirm" onClick={saveTextToList}/>
 
 
   //maybe export these out as named export, like we did for button?
@@ -63,6 +73,11 @@ function App() {
   //     </div>)
   // }
 
+  const ButtonTrash = ()=><Button icon={<SlTrash/>} onClick={saveTextToList}/>
+
+  const ButtonOptions = ()=> <Button icon={<SlOptions/>} onClick={openModal}/>
+
+  const ButtonCancel = ()=> <Button icon="Cancel" onClick={closeModal}/>
   function ButtonGroup2(Component1, Component2){
     return (
       <div className='flex justify-end flex-wrap'>
@@ -72,7 +87,8 @@ function App() {
     )
   }
 
-  const ButtonGroup2Confirm = () => ButtonGroup2(ButtonAnchor, ButtonBasket)
+  const ButtonGroup2Confirm = () => ButtonGroup2(ButtonCancel, ButtonConfirm)
+  const ButtonGroup2Edit = ()=> ButtonGroup2()
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
@@ -83,29 +99,21 @@ function App() {
         <h2 className='bg-gray-800 rounded-t-xl px-1'>In Progress</h2>
         {/* appearance like selectable tabs */}
         <h2>Done</h2>
-        <ButtonGroup2Confirm/>
+        
       </div>
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
         {list.map((elem, index)=>
           <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
       </div>
-      <div className='flex flex-col border rounded-md p-1'>
+      
+      {isModalOpen?      <dialog className='flex flex-col border rounded-md p-1'>
         <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
         <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
-        {/* TESTTTTTTTTTTTTTTTT */}
-        {/* <div className='flex justify-end flex-wrap'>
-          <ButtonAnchor/>
-          <ButtonBasket/>
-          <ButtonBasketWithLabel/>
-          <ButtonBasketWithLabel2 label="Goodbye"/>
-          <ButtonWithLabel label="button" icon={<SlBasket/>} onClick={saveTextToList}/>
-
-        </div> */}
         <ButtonGroup2Confirm/>
+      </dialog> : <ButtonNote/>}
 
-        {/* TESTTTTTTTTTTTTTTT */}
-      </div>
+
     </div>
   )
 }
