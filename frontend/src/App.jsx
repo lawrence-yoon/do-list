@@ -3,7 +3,7 @@ import TextField from './components/TextField'
 import ButtonPost from './components/ButtonPost'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
-import Button, {ButtonNotebook} from './components/Button'
+import Button, {ButtonNotebook, ButtonConfirm, ButtonCancel} from './components/Button'
 import { SlAnchor, SlBell, SlBasket } from 'react-icons/sl'
 import NavBar from './components/NavBar'
 
@@ -37,6 +37,8 @@ function App() {
     }
   }
 
+  
+
   function ButtonAnchor(){
     return <Button icon={<SlAnchor/>} onClick={saveTextToList}/>
   }
@@ -45,32 +47,32 @@ function App() {
   const ButtonBasket = ()=> <Button icon={<SlBasket/>} onClick={saveTextToList}/>
   
 
-  function withLabel(Component){
-    return function({label, ...rest }){
-      return (
-        <>
-          <label>
-            {label}
-          </label>
-          <Component {...rest}/>
-        </>
-      )
-    }
+
+
+
+  //maybe export these out as named export, like we did for button?
+  //like make a separate withLabel file, default export is the builder, and have named exports of wrapped components
+    //perhaps named exports can justifiably be put on there as examples and built out for the specific company, but i think it should only be built of just one componnet wrapping, and only passable prop should be the state function handlers aka onclick onchange.
+
+
+  // function ButtonGroup1(){
+  //   return (
+  //     <div>
+  //       <SlAnchor/>
+  //       <SlBell/>
+  //     </div>)
+  // }
+
+  function ButtonGroup2(Component1, Component2){
+    return (
+      <div className='flex justify-end flex-wrap'>
+        <Component1/>
+        <Component2/>
+      </div>
+    )
   }
 
-  function withLabelHello(Component){
-    return function WrappedComponent(){
-      return (<>
-        <label className='block'>
-          Hello
-        </label>
-        <Component/>
-      </>)
-    }
-  }
-
-  const ButtonBasketWithLabel = withLabelHello(ButtonBasket)
-  const ButtonBasketWithLabel2 = withLabel(ButtonBasket)
+  const ButtonGroup2Confirm = () => ButtonGroup2(ButtonAnchor, ButtonBasket)
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
@@ -81,6 +83,7 @@ function App() {
         <h2 className='bg-gray-800 rounded-t-xl px-1'>In Progress</h2>
         {/* appearance like selectable tabs */}
         <h2>Done</h2>
+        <ButtonGroup2Confirm/>
       </div>
       <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
         {list.map((elem, index)=>
@@ -90,23 +93,21 @@ function App() {
       <div className='flex flex-col border rounded-md p-1'>
         <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
         <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
-        <div className='flex justify-end'>
-          {/* <ButtonPost onClick={saveTextToList}/>
-          <ButtonNotebook onClick={saveTextToList}/>
-          <Button icon={<SlBell/>} onClick={saveTextToList}/> */}
+        {/* TESTTTTTTTTTTTTTTTT */}
+        {/* <div className='flex justify-end flex-wrap'>
           <ButtonAnchor/>
           <ButtonBasket/>
           <ButtonBasketWithLabel/>
           <ButtonBasketWithLabel2 label="Goodbye"/>
-        </div>
+          <ButtonWithLabel label="button" icon={<SlBasket/>} onClick={saveTextToList}/>
+
+        </div> */}
+        <ButtonGroup2Confirm/>
+
+        {/* TESTTTTTTTTTTTTTTT */}
       </div>
     </div>
   )
 }
-
-
-
-
-
 
 export default App

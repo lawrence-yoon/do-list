@@ -11,6 +11,28 @@ export function ButtonPlus({onClick=()=>{}}){
     )
 }
 
+export function ButtonConfirm({onClick=()=>{}}){
+  return (
+      <button 
+          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+          onClick={onClick}
+      >
+      <p className="ml-1">Confirm</p>
+      </button>
+  )
+}
+
+export function ButtonCancel({onClick=()=>{}}){
+  return (
+      <button 
+          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+          onClick={onClick}
+      >
+      <p className="ml-1">Cancel</p>
+      </button>
+  )
+}
+
 export function ButtonNotebook({onClick=()=>{}}){
   return (
       <button 
