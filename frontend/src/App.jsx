@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import TextField from './components/TextField'
-import ButtonPost from './components/ButtonPost'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
-import Button from './components/Button'
+import Button, {ButtonCSS} from './components/Button'
 import { SlAnchor, SlBasket, SlNote, SlOptions, SlTrash } from 'react-icons/sl'
 import NavBar from './components/NavBar'
 
@@ -47,15 +46,10 @@ function App() {
     setText(initialTextState)
     setIsModalOpen(false)
   }
-
-  function ButtonAnchor(){
-    return <Button icon={<SlAnchor/>} onClick={openModal}/>
-  }
-
-  //i think this is the way to go. the function that was imported to have one function declared like the below constant, and the other export which will be default export is the Button Function. 
-  const ButtonBasket = ()=> <Button icon={<SlBasket/>} onClick={saveTextToList}/>
   
-  const ButtonNote = ()=> <Button icon={<SlNote/>} onClick={openModal}/>
+  const ButtonNote = ()=> <ButtonCSS 
+    className="border border-transparent flex text-lg items-center font-semibold p-5 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+    icon={<SlNote/>} onClick={openModal}/>
 
   const ButtonConfirm = ()=><Button icon="Confirm" onClick={saveTextToList}/>
 
@@ -107,12 +101,15 @@ function App() {
         )}
       </div>
       
-      {isModalOpen?      <dialog className='flex flex-col border rounded-md p-1'>
-        <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
-        <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
-        <ButtonGroup2Confirm/>
-      </dialog> : <ButtonNote/>}
+      {isModalOpen &&      
+          <dialog className='flex flex-col border rounded-md p-1'>
+            <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
+            <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
+            <ButtonGroup2Confirm/>
+          </dialog> 
+      }
 
+      <div className='flex justify-end'><ButtonNote/></div>
 
     </div>
   )

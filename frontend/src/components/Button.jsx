@@ -1,64 +1,18 @@
-import {SlPlus, SlList, SlLogin, SlLogout,  SlNote, SlNotebook, SlOptionsVertical, SlOptions, SlTrash, SlMenu } from "react-icons/sl"
-
-export function ButtonPlus({onClick=()=>{}}){
-    return (
-        <button 
-            className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
-            onClick={onClick}
-        >
-        <SlPlus/> <p className="ml-1">Add</p>
-        </button>
-    )
-}
-
-export function ButtonConfirm({onClick=()=>{}}){
-  return (
-      <button 
-          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
-          onClick={onClick}
-      >
-      <p className="ml-1">Confirm</p>
-      </button>
-  )
-}
-
-export function ButtonCancel({onClick=()=>{}}){
-  return (
-      <button 
-          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
-          onClick={onClick}
-      >
-      <p className="ml-1">Cancel</p>
-      </button>
-  )
-}
-
-export function ButtonNotebook({onClick=()=>{}}){
-  return (
-      <button 
-          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
-          onClick={onClick}
-      >
-      <SlNotebook/>
-      </button>
-  )
-}
-
-export function ButtonNote({onClick=()=>{}}){
-  return (
-      <button 
-          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
-          onClick={onClick}
-      >
-      <SlNote/>
-      </button>
-  )
-}
-
 export default function Button({icon, onClick=()=>{}}){
   return (
       <button 
-          className="border border-transparent flex text-lg items-center font-semibold py-2 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+          className="border border-transparent flex text-xs items-center font-semibold p-5 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+          onClick={onClick}
+      >
+      {icon}
+      </button>
+  )
+}
+
+export function ButtonCSS({icon, className, onClick=()=>{}}){
+  return (
+      <button 
+          className={className} 
           onClick={onClick}
       >
       {icon}
