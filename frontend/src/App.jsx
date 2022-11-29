@@ -12,6 +12,8 @@ function App() {
     details:""
   }
 
+// this right here along with the useEffect enables the 
+// localstorage, kinda neat 
   const initialListState = localStorage.getItem("MY_LIST")!==null?JSON.parse(localStorage.getItem("MY_LIST")):[]
 
   const [text, setText] = useState(initialTextState)
@@ -60,24 +62,6 @@ function App() {
 
   const ButtonConfirm = ()=><Button icon="Confirm" onClick={saveTextToList}/>
 
-
-  //maybe export these out as named export, like we did for button?
-  //like make a separate withLabel file, default export is the builder, and have named exports of wrapped components
-    //perhaps named exports can justifiably be put on there as examples and built out for the specific company, but i think it should only be built of just one componnet wrapping, and only passable prop should be the state function handlers aka onclick onchange.
-
-
-  // function ButtonGroup1(){
-  //   return (
-  //     <div>
-  //       <SlAnchor/>
-  //       <SlBell/>
-  //     </div>)
-  // }
-
-  const ButtonTrash = ()=><Button icon={<SlTrash/>} onClick={saveTextToList}/>
-
-  const ButtonOptions = ()=> <Button icon={<SlOptions/>} onClick={openModal}/>
-
   const ButtonCancel = ()=> <Button icon="Cancel" onClick={closeModal}/>
   function ButtonGroup2(Component1, Component2){
     return (
@@ -89,7 +73,6 @@ function App() {
   }
 
   const ButtonGroup2Confirm = () => ButtonGroup2(ButtonCancel, ButtonConfirm)
-  const ButtonGroup2Edit = ()=> ButtonGroup2()
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm relative text-white bg-gray-700' >
@@ -101,19 +84,20 @@ function App() {
           <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
       </div>
-      
-
 
       <div className='flex justify-end'><ButtonNote/></div>
-      {isModalOpen &&      
-          <dialog className='flex flex-col border rounded-md p-1 absolute top-1/4 '>
-            <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
-            <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
-            <ButtonGroup2Confirm/>
-          </dialog> 
+      {isModalOpen &&
+          <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0'>      
+            <dialog className='flex flex-col border rounded-md p-1 top-[40%] absolute'>
+              <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
+              <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
+              <ButtonGroup2Confirm/>
+            </dialog> 
+          </div>
       }
     </div>
   )
 }
+
 
 export default App
