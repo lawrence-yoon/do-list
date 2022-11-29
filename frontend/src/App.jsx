@@ -74,15 +74,14 @@ function App() {
 
   const ButtonGroup2Confirm = () => ButtonGroup2(ButtonCancel, ButtonConfirm)
 
-  const reversedList = list.reverse()
 
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm relative text-white bg-gray-700' >
       {/* <NavBar/> */}
       <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>Do List</h1>
 
-      <div className="container overflow-scroll flex flex-col-reverse flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
-        {reversedList.map((elem, index)=>
+      <div className="container overflow-scroll flex flex-col flex-grow justify-end bg-gray-800 mx-auto p-1 mb-2 rounded-md">
+        {list.map((elem, index)=>
           <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
       </div>
