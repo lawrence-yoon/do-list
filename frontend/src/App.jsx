@@ -1,19 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TextField from './components/TextField'
 import Note from './components/Note'
 import TextFieldArea from './components/TextFieldArea'
 import Button, {ButtonCSS} from './components/Button'
-import { SlAnchor, SlBasket, SlNote, SlOptions, SlTrash } from 'react-icons/sl'
-import NavBar from './components/NavBar'
+import {SlNote, SlOptions, SlTrash } from 'react-icons/sl'
+
 
 function App() {
   const initialTextState = {
     title:"Untitled",
     details:""
   }
+
+  const initialListState = localStorage.getItem("MY_LIST")!==null?JSON.parse(localStorage.getItem("MY_LIST")):[]
+
   const [text, setText] = useState(initialTextState)
-  const [list, setList] = useState([])
+  const [list, setList] = useState(initialListState)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useEffect(()=>{
+    localStorage.setItem("MY_LIST", JSON.stringify(list))
+  },[list])
 
   function saveTextToList(){
     setList(prevList=>[...prevList, text])
@@ -85,7 +92,7 @@ function App() {
   const ButtonGroup2Edit = ()=> ButtonGroup2()
 
   return (
-    <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm text-white bg-gray-700' >
+    <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm relative text-white bg-gray-700' >
       {/* <NavBar/> */}
       <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>Project 1</h1>
       <div id="select-list-tab" className='flex flex-row'>
@@ -101,16 +108,16 @@ function App() {
         )}
       </div>
       
+
+
+      <div className='flex justify-end'><ButtonNote/></div>
       {isModalOpen &&      
-          <dialog className='flex flex-col border rounded-md p-1'>
+          <dialog className='flex flex-col border rounded-md p-1 absolute top-1/4 '>
             <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
             <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
             <ButtonGroup2Confirm/>
           </dialog> 
       }
-
-      <div className='flex justify-end'><ButtonNote/></div>
-
     </div>
   )
 }
