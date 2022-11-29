@@ -80,7 +80,7 @@ function App() {
       {/* <NavBar/> */}
       <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>Do List</h1>
 
-      <div className="container overflow-scroll flex flex-col flex-grow justify-end bg-gray-800 mx-auto p-1 mb-2 rounded-md">
+      <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
         {list.map((elem, index)=>
           <Note key={index} id={index} entry={elem} onClick={removeTextFromList}/>
         )}
