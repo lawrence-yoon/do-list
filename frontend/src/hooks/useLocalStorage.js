@@ -1,3 +1,4 @@
+import { useDebugValue } from "react"
 import {useState, useEffect} from "react"
 
 function getSavedValue(key, initialValue) {
@@ -16,6 +17,8 @@ export default function useLocalStorage(key, initialValue){
     useEffect(()=>{
         localStorage.setItem(key, JSON.stringify(value))
       }, [value])
-      
+    
+    useDebugValue(value?? 'loading...')
+
     return [value, setValue]
 }

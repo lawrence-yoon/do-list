@@ -1,7 +1,7 @@
 import {ButtonTrash, ButtonOptions} from "./Button"
 
 
-function Note({key, id, entry, onClick=()=>{}, onClick2=()=>{}}){
+function Note({id, entry, onClick=()=>{}, onClick2=()=>{}}){
   return (
     <section className='bg-gray-500 p-2 rounded-sm m-1 flex flex-row align-middle justify-between'>
       <div className="break-words overflow-hidden">

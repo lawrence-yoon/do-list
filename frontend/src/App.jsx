@@ -56,12 +56,6 @@ function App() {
     //setList(prevList=>prevList[index]=)
   }
 
-  function keyDownHandler(keyPress){
-    if(keyPress=="Enter" && text!=""){
-      saveTextToList()
-    }
-  }
-
   function openModal(){
     setIsModalOpen(true)
   }
@@ -109,7 +103,7 @@ function App() {
             </dialog> 
           </div>
       }
-      {isEditModalOpen &&
+      {/* {isEditModalOpen &&
           <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0'>      
             <dialog className='flex flex-col border rounded-md p-1 top-[40%] absolute'>
               <TextField name="title" value={text.title} onChange={handleTextChange} onKeyDown={keyDownHandler}/>
@@ -131,7 +125,7 @@ function App() {
               </div>
             </dialog> 
           </div>
-      }
+      } */}
     </div>
   )
 }
