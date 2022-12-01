@@ -66,3 +66,14 @@ export const ButtonCancel = function({onClick=()=>{}, ...rest}){
     </Button>
   )
 }
+
+export const ButtonDelete = function({onClick=()=>{}, ...rest}){
+  return (
+    <Button 
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+      onClick={onClick}
+      {...rest}>
+      <span>Delete</span>
+    </Button>
+  )
+}
