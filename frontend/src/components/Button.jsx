@@ -52,7 +52,7 @@ export const ButtonTrash = function({onClick=()=>{}, ...rest}){
 export const ButtonConfirm = function({onClick=()=>{}, ...rest}){
   return (
     <Button 
-      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
+      className="border border-transparent bg-gray-600 flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
       onClick={onClick}
       {...rest}>
       <span>Confirm</span>
