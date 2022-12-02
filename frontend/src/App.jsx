@@ -31,13 +31,6 @@ function App() {
     }))
   }
 
-  function handleTextTargetChange(e){
-    setTextTargeted(prevText=>({
-      ...prevText,
-      [e.target.name]:e.target.value
-    }))
-  }
-
   function handleDelete(ID){
     setTextTargeted({
       id:ID,
@@ -47,11 +40,12 @@ function App() {
   }
 
   function handleEdit(ID){
-    // setTextTargeted({
-    //   id:ID,
-    //   data:list[ID]
-    // })
-    // setIsEditModalOpen(true)
+    setTextTargeted({
+      id:ID,
+      data:list[ID]
+    })
+    setText(list[ID])
+    setIsEditModalOpen(true)
     alert("edit")
   }
 
@@ -86,10 +80,10 @@ function App() {
     console.log("confirm")
     // [textTargeted.id] is id of targeted text
     //need to edit item in array with this id with texttarget
-    const reviseArray = list.map((elem,index)=>{
-      index==textTargeted.id ? textTargeted : elem
-    })
-    setList(reviseArray)
+    const edittedArray = list
+    edittedArray[textTargeted.id] = text
+    setList(edittedArray)
+    setText(initialTextState)
     setIsEditModalOpen(false)
   }
 
@@ -118,7 +112,9 @@ function App() {
 
       { isDeleteModalOpen ? <ModalDelete textTargeted={textTargeted} handleConfirm={handleConfirmDelete} handleCancel={handleCancelDelete}/> : null }
 
-      { isEditModalOpen ? <ModalEdit textTargeted={textTargeted} handleTextChange= {handleTextTargetChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
+      { isEditModalOpen ? <ModalEdit 
+      text={text}
+       handleTextChange= {handleTextChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
     </div>
   )
 }

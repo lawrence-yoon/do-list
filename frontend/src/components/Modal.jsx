@@ -36,12 +36,12 @@ export function ModalDelete({textTargeted, handleConfirm, handleCancel}){
 }
 
 
-export function ModalEdit({textTargeted, handleTextTargetChange, handleConfirm, handleCancel}){
+export function ModalEdit({text, handleTextChange, handleConfirm, handleCancel}){
   return (
     <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center'>      
     <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12 h-1/2'>
-      <TextField name="title" value={textTargeted.data.title} onChange={handleTextTargetChange}/>
-      <TextFieldArea name="details" value={textTargeted.data.details} onChange={handleTextTargetChange}/>
+      <TextField name="title" value={text.title} onChange={handleTextChange}/>
+      <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
       <div className='flex justify-end gap-2'>
         <ButtonConfirm onClick={handleConfirm}/>
         <ButtonCancel onClick={handleCancel}/>
