@@ -2,18 +2,27 @@ import { useState} from 'react'
 import useLocalStorage from '../src/hooks/useLocalStorage'
 import Note from './components/Note'
 import {ButtonNote, ButtonArchiveBox} from './components/Button'
-import { ModalNote } from './components/Modal'
-
+import { ModalNote, ModalDelete, ModalEdit } from './components/Modal'
 
 function App() {
   const initialTextState = {
     title:"",
     details:""
   }
-
-  const [text, setText] = useState(initialTextState)
+  
   const [list, setList] = useLocalStorage("list", [])
+  
+  const [text, setText] = useState(initialTextState)
+  const [textTargeted, setTextTargeted] = useState({id:null, data:{}})
   const [isNoteModalOpen, setIsNoteModalOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+
+  // function pullTitleAndDetailsWithId (id){
+  //   const textTargetObject = list[id]
+  //   setTextTargeted(textTargetObject)
+  // }
+
 
   function handleTextChange(e){
     setText(prevText=>({
@@ -22,14 +31,28 @@ function App() {
     }))
   }
 
-  function handleDelete(id){
-    // i would like to make a confirm cancel model fired for this. for now it will delete
-    setList(prev=>prev.filter((elem,index)=>index != id))
+  function handleTextTargetChange(e){
+    setTextTargeted(prevText=>({
+      ...prevText,
+      [e.target.name]:e.target.value
+    }))
   }
 
-  function handleEdit(id){
-    // i would like to make a confirm cancel model fired for this. for now it will alert
-    alert("edit pressed")
+  function handleDelete(ID){
+    setTextTargeted({
+      id:ID,
+      data:list[ID]
+    })
+    setIsDeleteModalOpen(true)
+  }
+
+  function handleEdit(ID){
+    // setTextTargeted({
+    //   id:ID,
+    //   data:list[ID]
+    // })
+    // setIsEditModalOpen(true)
+    alert("edit")
   }
 
   function handleConfirmNote(){
@@ -47,6 +70,34 @@ function App() {
     setIsNoteModalOpen(false)
   }
 
+  function handleConfirmDelete(){
+    //close modal
+    setList(prev=>prev.filter((elem,index)=>index != textTargeted.id))
+    setTextTargeted({})
+    setIsDeleteModalOpen(false)
+  }
+
+  function handleCancelDelete(){
+    setTextTargeted(0)
+    setIsDeleteModalOpen(false)
+  }
+
+  function handleConfirmEdit(){
+    console.log("confirm")
+    // [textTargeted.id] is id of targeted text
+    //need to edit item in array with this id with texttarget
+    const reviseArray = list.map((elem,index)=>{
+      index==textTargeted.id ? textTargeted : elem
+    })
+    setList(reviseArray)
+    setIsEditModalOpen(false)
+  }
+
+  function handleCancelEdit(){
+    console.log("cancel")
+    setIsEditModalOpen(false)
+  }
+
   return (
     <div className='body container flex flex-col p-2 mx-auto h-screen max-w-screen-sm relative text-white bg-gray-700' >
       <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>✍️ Do List</h1>
@@ -62,13 +113,14 @@ function App() {
         <ButtonNote onClick={handleNote}/>
       </div>
 
-      { isNoteModalOpen ? <ModalNote text={text} handleTextChange={handleTextChange} handleConfirmNote={handleConfirmNote} handleClose={handleClose}/> : null }
+      { isNoteModalOpen ? <ModalNote text={text} handleTextChange={handleTextChange} handleConfirm={handleConfirmNote} handleCancel={handleClose}/> : null }
 
+
+      { isDeleteModalOpen ? <ModalDelete textTargeted={textTargeted} handleConfirm={handleConfirmDelete} handleCancel={handleCancelDelete}/> : null }
+
+      { isEditModalOpen ? <ModalEdit textTargeted={textTargeted} handleTextChange= {handleTextTargetChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
     </div>
   )
 }
-
-
-
 
 export default App

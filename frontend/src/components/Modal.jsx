@@ -2,17 +2,51 @@ import TextFieldArea from './TextFieldArea'
 import TextField from './TextField'
 import { ButtonConfirm, ButtonCancel } from './Button'
 
-export function ModalNote({text, handleTextChange, handleConfirmNote, handleClose}){
+export function ModalNote({text, handleTextChange, handleConfirm, handleCancel}){
     return (
-      <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0'>      
-        <div className='flex flex-col border rounded-md bg-gray-700 p-1 top-[40%] absolute'>
+      <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center'>      
+        <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12'>
           <TextField name="title" value={text.title} onChange={handleTextChange}/>
           <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
           <div className='flex justify-end gap-2'>
-            <ButtonConfirm onClick={handleConfirmNote}/>
-            <ButtonCancel onClick={handleClose}/>
+            <ButtonConfirm onClick={handleConfirm}/>
+            <ButtonCancel onClick={handleCancel}/>
           </div>
         </div> 
       </div>
     )
+}
+
+// export default function Modal({children, classNameOuter, classNameInner, text, handleTextChange, handleConfirmNote, handleClose, ...rest}){
+
+// }
+
+export function ModalDelete({textTargeted, handleConfirm, handleCancel}){
+  return (
+    <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center'>      
+      <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12'>
+          <span>Are you sure you want to delete {textTargeted.data.title}?</span>
+          <div className='flex justify-end'>
+            <ButtonConfirm onClick={handleConfirm}/>
+            <ButtonCancel onClick={handleCancel}/>
+          </div>
+        </div>
+    </div>
+  )
+}
+
+
+export function ModalEdit({textTargeted, handleTextTargetChange, handleConfirm, handleCancel}){
+  return (
+    <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center'>      
+    <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12 h-1/2'>
+      <TextField name="title" value={textTargeted.data.title} onChange={handleTextTargetChange}/>
+      <TextFieldArea name="details" value={textTargeted.data.details} onChange={handleTextTargetChange}/>
+      <div className='flex justify-end gap-2'>
+        <ButtonConfirm onClick={handleConfirm}/>
+        <ButtonCancel onClick={handleCancel}/>
+      </div>
+    </div> 
+  </div>
+  )
 }
