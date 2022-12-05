@@ -22,8 +22,8 @@ export const TestModal = ()=> {
 
 export function ModalNote({text, handleTextChange, handleConfirm, handleCancel, ...rest}){
   return (
-    <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center'>      
-      <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12'>
+    <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center' onClick={handleCancel}>      
+      <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12' onClick={e=>{e.stopPropagation()}}>
         <TextField name="title" value={text.title} onChange={handleTextChange}/>
         <TextFieldArea name="details" value={text.details} onChange={handleTextChange}/>
         <div className='flex justify-end gap-2'>
@@ -37,8 +37,8 @@ export function ModalNote({text, handleTextChange, handleConfirm, handleCancel, 
 
 export function ModalDelete({textTargeted, handleConfirm, handleCancel, ...rest}){
   return (
-    <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center'>      
-      <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12'>
+    <div className='w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 flex justify-center items-center' onClick={handleCancel}>      
+      <div className='flex flex-col border rounded-md bg-gray-700 p-1 w-10/12' onClick={e=>{e.stopPropagation()}} >
           <span className='text-lg p-2 mt-2 mb-12'>Are you sure you want to delete {textTargeted.data.title}?</span>
           <div className='flex justify-end'>
             <ButtonConfirm onClick={handleConfirm}/>

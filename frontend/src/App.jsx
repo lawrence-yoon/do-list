@@ -101,12 +101,9 @@ function App() {
       {/* MODALS */}
       { isNoteModalOpen ? <ModalNote text={text} handleTextChange={handleTextChange} handleConfirm={handleConfirmNote} handleCancel={handleClose}/> : null }
 
-
       { isDeleteModalOpen ? <ModalDelete textTargeted={textTargeted} handleConfirm={handleConfirmDelete} handleCancel={handleCancelDelete}/> : null }
 
-      { isEditModalOpen ? <ModalNote 
-      text={text}
-       handleTextChange= {handleTextChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
+      { isEditModalOpen ? <ModalNote text={text} handleTextChange= {handleTextChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
     </div>
   )
 }
