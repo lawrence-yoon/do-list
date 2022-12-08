@@ -6,6 +6,6 @@ html {
   background-color: rgb(61, 61, 61);
 }
 
-.body {
+.height-webkit {
   height: -webkit-fill-available
 }

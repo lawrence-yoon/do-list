@@ -26,7 +26,7 @@ export const ButtonNote = function({onClick=()=>{}, ...rest}){
 export const ButtonOptions = function({onClick=()=>{}, ...rest}){
   return (
     <Button 
-      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-gray-800 hover:border-white" 
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
       onClick={onClick}
       {...rest}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -39,7 +39,7 @@ export const ButtonOptions = function({onClick=()=>{}, ...rest}){
 export const ButtonTrash = function({onClick=()=>{}, ...rest}){
   return (
     <Button 
-      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-gray-800 hover:border-white" 
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white" 
       onClick={onClick}
       {...rest}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

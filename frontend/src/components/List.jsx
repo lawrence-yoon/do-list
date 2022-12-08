@@ -119,7 +119,7 @@ export default function List({list, setList, setListLeft, setListRight, label}){
     }
   
     return (
-      <div className='body max-w-md min-w-[375px] flex flex-col p-2 mx-auto relative text-white bg-gray-700' >
+      <div className='max-w-md min-w-[375px] flex flex-col p-2 mx-auto relative text-white bg-gray-700 md:min-w-[33%]' >
         
         <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>{label}</h1>
   
