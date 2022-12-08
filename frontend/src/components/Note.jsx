@@ -1,7 +1,7 @@
-import {ButtonTrash, ButtonOptions} from "./Button"
+import {ButtonTrash, ButtonOptions, ButtonMove} from "./Button"
 
 
-function Note({id, entry, onClickDelete=()=>{}, onClickEdit=()=>{}}){
+function Note({id, entry, onClickDelete=()=>{}, onClickEdit=()=>{}, onClickMove=()=>{}}){
   return (
     <section className='bg-gray-500 p-2 rounded-sm m-1 flex flex-row align-middle justify-between'>
       <div className="break-words overflow-hidden">
@@ -10,6 +10,7 @@ function Note({id, entry, onClickDelete=()=>{}, onClickEdit=()=>{}}){
       </div>
       <div className="flex flex-col justify-between">
         <ButtonOptions onClick={()=>onClickEdit(id)}/>
+        <ButtonMove onClick={()=>onClickMove(id)}/>
         <ButtonTrash onClick={()=>onClickDelete(id)}/>
       </div>
     </section>

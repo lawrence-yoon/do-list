@@ -9,9 +9,6 @@ export default function List({list, setList, label}){
       details:""
     }
     
-    // the data that will be passed into database or higher order function. 
-  
-    
     const [text, setText] = useState(initialTextState)
     const [textTargeted, setTextTargeted] = useState({id:null, data:{}})
     const [isNoteModalOpen, setIsNoteModalOpen] = useState(false)
@@ -25,6 +22,8 @@ export default function List({list, setList, label}){
       }))
     }
   
+    //Create new Note
+    //
     function handleNote(){
       setIsNoteModalOpen(true)
     }
@@ -39,7 +38,9 @@ export default function List({list, setList, label}){
       setText(initialTextState)
       setIsNoteModalOpen(false)
     }
-  
+    
+    //Delete targeted Note
+    //
     function handleDelete(ID){
       setTextTargeted({
         id:ID,
@@ -59,7 +60,9 @@ export default function List({list, setList, label}){
       setText(initialTextState)
       setIsDeleteModalOpen(false)
     }
-  
+    
+    //Edit targeted Note
+    //
     function handleEdit(ID){
       setTextTargeted({
         id:ID,
@@ -81,6 +84,31 @@ export default function List({list, setList, label}){
       setText(initialTextState)
       setIsEditModalOpen(false)
     }
+
+    //Move targeted Note
+    //currently copy pasted from the edit handlers.
+    function handleMove(ID){
+      // setTextTargeted({
+      //   id:ID,
+      //   data:list[ID]
+      // })
+      // setText(list[ID])
+      // setIsEditModalOpen(true)
+      alert("pressed move button")
+    }
+  
+    function handleConfirmMove(){
+      const edittedArray = list
+      edittedArray[textTargeted.id] = text
+      setList(edittedArray)
+      setText(initialTextState)
+      setIsEditModalOpen(false)
+    }
+  
+    function handleCancelMove(){
+      setText(initialTextState)
+      setIsEditModalOpen(false)
+    }
   
     return (
       <div className='body max-w-md min-w-[375px] flex flex-col p-2 mx-auto relative text-white bg-gray-700' >
@@ -89,7 +117,7 @@ export default function List({list, setList, label}){
   
         <NoteArea>
           {list.map((elem, index)=>
-            <Note key={index} id={index} entry={elem} onClickDelete={handleDelete} onClickEdit={handleEdit}/>
+            <Note key={index} id={index} entry={elem} onClickDelete={handleDelete} onClickEdit={handleEdit} onClickMove={handleMove}/>
           )}
         </NoteArea>
 
