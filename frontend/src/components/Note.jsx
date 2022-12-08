@@ -1,4 +1,4 @@
-import {ButtonTrash, ButtonPencil} from "./Button"
+import {ButtonTrash, ButtonOptions} from "./Button"
 
 
 function Note({id, entry, onClickDelete=()=>{}, onClickEdit=()=>{}}){
@@ -9,7 +9,7 @@ function Note({id, entry, onClickDelete=()=>{}, onClickEdit=()=>{}}){
         <p className="text-sm ">{entry.details}</p>
       </div>
       <div className="flex flex-col justify-between">
-        <ButtonPencil onClick={()=>onClickEdit(id)}/>
+        <ButtonOptions onClick={()=>onClickEdit(id)}/>
         <ButtonTrash onClick={()=>onClickDelete(id)}/>
       </div>
     </section>

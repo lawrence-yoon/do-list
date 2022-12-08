@@ -85,14 +85,14 @@ export default function List({list, setList, label}){
     return (
       <div className='body max-w-md min-w-[375px] flex flex-col p-2 mx-auto relative text-white bg-gray-700' >
         
-        <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>✍️ {label}</h1>
+        <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>{label}</h1>
   
-        <div className="container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md">
+        <NoteArea>
           {list.map((elem, index)=>
             <Note key={index} id={index} entry={elem} onClickDelete={handleDelete} onClickEdit={handleEdit}/>
           )}
-        </div>
-  
+        </NoteArea>
+
         <div className='flex justify-end'>
           <ButtonNote onClick={handleNote}/>
         </div>
@@ -105,4 +105,12 @@ export default function List({list, setList, label}){
         { isEditModalOpen ? <ModalNote text={text} handleTextChange= {handleTextChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
       </div>
     )
+}
+
+export function NoteArea({children, ...rest}){
+  return (
+    <div className='container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md'>
+      {children}
+    </div>
+  )
 }

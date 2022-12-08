@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <div className='container h-screen max-w-max flex flex-row gap-10 mx-auto'>
-        <List list={listDo} setList={setListDo} label="Do List"/>
-        <List list={listDoing} setList={setListDoing} label="Doing List"/>
-        <List list={listDone} setList={setListDone} label="Done List"/>
+        <List list={listDo} setList={setListDo} label="✍️ Do List"/>
+        <List list={listDoing} setList={setListDoing} label="✍️ Doing List"/>
+        <List list={listDone} setList={setListDone} label="✍️ Done List"/>
       </div>
     </>
   )
