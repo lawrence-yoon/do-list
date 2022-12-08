@@ -1,9 +1,9 @@
 import Note from './Note'
 import { ButtonNote } from './Button'
-import { ModalNote, ModalDelete} from './Modal'
+import { ModalNote, ModalDelete, ModalMove} from './Modal'
 import { useState } from 'react'
 
-export default function List({list, setList, label}){
+export default function List({list, setList, setListLeft, setListRight, label}){
     const initialTextState = {
       title:"",
       details:""
@@ -14,6 +14,7 @@ export default function List({list, setList, label}){
     const [isNoteModalOpen, setIsNoteModalOpen] = useState(false)
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isMoveModalOpen, setIsMoveModalOpen] = useState(false)
   
     function handleTextChange(e){
       setText(prevText=>({
@@ -86,28 +87,35 @@ export default function List({list, setList, label}){
     }
 
     //Move targeted Note
-    //currently copy pasted from the edit handlers.
+    //
     function handleMove(ID){
-      // setTextTargeted({
-      //   id:ID,
-      //   data:list[ID]
-      // })
-      // setText(list[ID])
-      // setIsEditModalOpen(true)
-      alert("pressed move button")
+      setTextTargeted({
+        id:ID,
+        data:list[ID]
+      })
+      setText(list[ID])
+      setIsMoveModalOpen(true)
     }
   
-    function handleConfirmMove(){
-      const edittedArray = list
-      edittedArray[textTargeted.id] = text
-      setList(edittedArray)
+    function handleMoveLeft(){
+      setListLeft(prevList=>[...prevList, text])
+      setList(prev=>prev.filter((elem,index)=>index != textTargeted.id))
       setText(initialTextState)
-      setIsEditModalOpen(false)
+      setTextTargeted({id:null, data:{}})
+      setIsMoveModalOpen(false)
     }
-  
+    
+    function handleMoveRight(){
+      setListRight(prevList=>[...prevList, text])
+      setList(prev=>prev.filter((elem,index)=>index != textTargeted.id))
+      setText(initialTextState)
+      setTextTargeted({id:null, data:{}})
+      setIsMoveModalOpen(false)
+    }
+
     function handleCancelMove(){
       setText(initialTextState)
-      setIsEditModalOpen(false)
+      setIsMoveModalOpen(false)
     }
   
     return (
@@ -131,6 +139,8 @@ export default function List({list, setList, label}){
         { isDeleteModalOpen ? <ModalDelete textTargeted={textTargeted} handleConfirm={handleConfirmDelete} handleCancel={handleCancelDelete}/> : null }
   
         { isEditModalOpen ? <ModalNote text={text} handleTextChange= {handleTextChange} handleConfirm={handleConfirmEdit} handleCancel={handleCancelEdit}/> : null }
+      
+        { isMoveModalOpen ? <ModalMove textTargeted={textTargeted} handleMoveLeft={handleMoveLeft} handleMoveRight={handleMoveRight} handleCancel={handleCancelMove}/> : null }
       </div>
     )
 }

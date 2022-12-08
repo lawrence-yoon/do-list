@@ -12,9 +12,9 @@ function App() {
       <div className='container h-screen max-w-max flex flex-row mx-auto'>
       {/* maybe pass the setter for each of these into each other. three setters in one component. 
           that way when the modals or whatever fire in List, the setters for the other lists are available. */}
-        <List list={listDo} setList={setListDo} label="✍️ Do List"/>
-        <List list={listDoing} setList={setListDoing} label="✍️ Doing List"/>
-        <List list={listDone} setList={setListDone} label="✍️ Done List"/>
+        <List list={listDo} setList={setListDo} setListLeft={setListDone} setListRight={setListDoing} label="✍️ Do List"/>
+        <List list={listDoing} setList={setListDoing} setListLeft={setListDo} setListRight={setListDone} label="✍️ Doing List"/>
+        <List list={listDone} setList={setListDone} setListLeft={setListDoing} setListRight={setListDo} label="✍️ Done List"/>
       </div>
     </>
   )
