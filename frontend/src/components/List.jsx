@@ -119,11 +119,12 @@ export default function List({list, setList, setListLeft, setListRight, label}){
     }
   
     return (
-      <div className='max-w-md min-w-[300px] border flex flex-col p-2 relative text-white bg-gray-700' >
+      <div className='max-w-md min-w-[300px] border rounded-lg flex flex-col p-2 relative text-white bg-gray-700' >
         
         <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>{label}</h1>
   
         <NoteArea>
+        
           {list.map((elem, index)=>
             <Note key={index} id={index} entry={elem} onClickDelete={handleDelete} onClickEdit={handleEdit} onClickMove={handleMove}/>
           )}
@@ -147,7 +148,7 @@ export default function List({list, setList, setListLeft, setListRight, label}){
 
 export function NoteArea({children, ...rest}){
   return (
-    <div className='container flex flex-col bg-gray-800 mx-auto p-1 mb-2 rounded-md md:min-w-[25%]'>
+    <div className='container min-h-[200px] flex flex-col bg-gray-800 mx-auto p-1 mb-2 rounded-md md:min-w-[25%]'>
       {children}
     </div>
   )
