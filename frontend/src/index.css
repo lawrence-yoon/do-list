@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  background-color: rgb(61, 61, 61);
+  @apply bg-orange-300;
 }
 
 /* this one breaks with chrome */
