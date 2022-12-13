@@ -119,7 +119,7 @@ export default function List({list, setList, setListLeft, setListRight, label}){
     }
   
     return (
-      <div className='max-w-md min-w-[375px] flex flex-col p-2 mx-auto relative text-white bg-gray-700 md:min-w-[33%]' >
+      <div className='max-w-md min-w-[300px] border flex flex-col p-2 relative text-white bg-gray-700' >
         
         <h1 className='text-3xl font-bold pt-6 pb-3 text-center'>{label}</h1>
   
@@ -147,7 +147,7 @@ export default function List({list, setList, setListLeft, setListRight, label}){
 
 export function NoteArea({children, ...rest}){
   return (
-    <div className='container overflow-scroll flex flex-col flex-grow bg-gray-800 mx-auto p-1 mb-2 rounded-md'>
+    <div className='container flex flex-col bg-gray-800 mx-auto p-1 mb-2 rounded-md md:min-w-[25%]'>
       {children}
     </div>
   )

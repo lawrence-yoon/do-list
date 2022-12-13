@@ -6,6 +6,8 @@ html {
   background-color: rgb(61, 61, 61);
 }
 
-.height-webkit {
+/* this one breaks with chrome */
+/* .height-webkit {
   height: -webkit-fill-available
-}
+} */
+

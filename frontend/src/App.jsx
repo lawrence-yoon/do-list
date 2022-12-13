@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div className='height-webkit container h-screen max-w-max flex flex-row mx-auto'>
+      <div className='flex flex-row items-start justify-center'>
         <List list={listDo} setList={setListDo} setListLeft={setListDone} setListRight={setListDoing} label="✍️ Do List"/>
         <List list={listDoing} setList={setListDoing} setListLeft={setListDo} setListRight={setListDone} label="✍️ Doing List"/>
         <List list={listDone} setList={setListDone} setListLeft={setListDoing} setListRight={setListDo} label="✍️ Done List"/>
