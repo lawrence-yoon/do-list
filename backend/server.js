@@ -18,13 +18,14 @@ app.get('/', (req,res)=>{
 
 app.post('/api/items', (req,res)=>{
     console.log("post request sent to /api/items")
-    console.log(req.body.test)
-    const newItem = new Item({
+    console.log(req.body)
+    const item = new Item({
         title: req.body.title,
         details: req.body.details,
         list: req.body.list
     })
-    res.status(200).json(newItem)
+    item.save()
+    res.status(200).json(item)
 })
 
 app.listen(port, ()=>{
