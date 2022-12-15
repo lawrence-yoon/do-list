@@ -43,6 +43,18 @@ app.post('/api/users/register', (req,res)=>{
                 password: hashedPassword
             })
             user.save()
+                .then((result)=>{
+                    res.status(201).send({
+                        message: "User created successfully",
+                        result
+                    })
+                })
+                .catch((error)=>{
+                    res.status(500).send({
+                        message: "Error creating user",
+                        error
+                    })
+                })
         })
         .catch((e)=>{
             res.status(500).send({
