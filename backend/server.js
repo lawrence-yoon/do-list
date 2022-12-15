@@ -1,11 +1,13 @@
 require('dotenv').config()
+const bcrypt = require("bcrypt")
+const { response } = require('express')
 const express = require("express")
 const app = express()
 const port = process.env.PORT || 3001
+const mongoose = require('mongoose')
 const connectDB = require("./config/db")
 const Item = require('./models/itemModel')
 const User = require('./models/userModel')
-const mongoose = require('mongoose')
 
 connectDB()
 
@@ -33,13 +35,21 @@ app.post('/api/items', (req,res)=>{
 app.post('/api/users/register', (req,res)=>{
     console.log("post request sent to /api/users/register")
     console.log(req.body)
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    })
-    user.save()
-    res.status(200).json(user)
+    bcrypt.hash(req.body.password, 10)
+        .then((hashedPassword)=>{
+            const user = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: hashedPassword
+            })
+            user.save()
+        })
+        .catch((e)=>{
+            res.status(500).send({
+                message:"Password was not hashed successfully",
+                e
+            })
+        })
 })
 
 //Login User
