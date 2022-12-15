@@ -1,6 +1,6 @@
 require('dotenv').config()
 const bcrypt = require("bcrypt")
-const { response } = require('express')
+const jwt = require("jsonwebtoken")
 const express = require("express")
 const app = express()
 const port = process.env.PORT || 3001
@@ -10,6 +10,8 @@ const Item = require('./models/itemModel')
 const User = require('./models/userModel')
 
 connectDB()
+
+const auth = require("./middleware/auth")
 
 app.use(express.json())
 app.use(express.urlencoded())
@@ -31,6 +33,7 @@ app.post('/api/items', (req,res)=>{
     item.save()
     res.status(200).json(item)
 })
+
 //Create/Register User
 app.post('/api/users/register', (req,res)=>{
     console.log("post request sent to /api/users/register")
@@ -70,25 +73,51 @@ app.post('/api/users/login', (req,res)=>{
     console.log(req.body)
     const email = req.body.email
     const password = req.body.password
-    User.findOne({email:email}, function(err, foundUser){
-        if (err) {
-            console.log(err)
-        }   else {
-            if(foundUser){
-                if(foundUser.password === password){
-                    console.log(`You are now logged in, ${foundUser.name}`)
-                    res.send(`You are now logged in, ${foundUser.name}`)
-                }   else{
-                    console.log('wrong password')
-                    res.send('wrong password')
-                }
-            }   else{
-                console.log("wrong user / user does not exist")
-                res.send("wrong user / user does not exist")
-            }
-        }
-    })
+    User.findOne({email:email})
+        .then((user)=>{
+            bcrypt.compare(password, user.password)
+                .then((passwordCheck)=>{
+                    if(!passwordCheck){
+                        res.status(400).send({
+                            message: "Incorrect Password",
+                            error
+                        })
+                    }
+                    const token = jwt.sign({
+                        userId: user._id,
+                        userEmail: user.email
+                    },
+                    process.env.JWT_SECRET,
+                    {expiresIn: "24h"}
+                    )
+                    res.status(200).send({
+                        message: "Login Successful",
+                        email: user.email,
+                        token
+                    })
+                })
+                .catch((error)=>{
+                    res.status(400).send({
+                        mesage: "Incorrect Password",
+                        error
+                    })
+                })
+        })
+        .catch((e)=>{
+            res.status(404).send({
+                message: "Email not found",
+                e
+            })
+        })
     
+})
+
+app.get('/api/items', auth, (req,res)=>{
+    res.json({message:"you are now authorized to get items"})
+})
+
+app.get('/api/items2', (req,res)=>{
+    res.json({message:"this is the free access"})
 })
 
 app.listen(port, ()=>{
