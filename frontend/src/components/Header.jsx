@@ -1,11 +1,24 @@
+import { Link, useNavigate } from "react-router-dom";
+import { ButtonBurger } from "./Button";
+
 function Header() {
   return (
     <header className="bg-orange-500 flex flex-row justify-between items-center h-10 p-6">
-      <h1 className="text-4xl">TaskBoard</h1>
-      <div className="flex justify-around gap-6">
-        <a className="text-xl">Login</a>
+      <Link className="text-4xl" to="/">
+        TaskBoard
+      </Link>
+      <div className="flex justify-around gap-6 items-center">
+        <Link className="text-xl" to="/tryme">
+          Try Me
+        </Link>
+        <Link className="text-xl" to="/login">
+          Login
+        </Link>
         {/* <a className='text-2xl'>Logout</a> */}
-        <a className="text-xl">Register</a>
+        <Link className="text-xl" to="/register">
+          Register
+        </Link>
+        <ButtonBurger />
       </div>
     </header>
   );
