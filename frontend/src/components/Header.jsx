@@ -1,25 +1,47 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonBurger } from "./Button";
 
 function Header() {
+  function handleBurger() {
+    setToggleBurger((prev) => !prev);
+    alert(toggleBurger);
+  }
+
+  const [toggleBurger, setToggleBurger] = useState(false);
+
   return (
-    <header className="bg-orange-500 flex flex-row justify-between items-center h-10 p-6">
-      <Link className="text-4xl" to="/">
+    <header className="bg-orange-500 flex flex-row justify-between items-center p-1 px-3">
+      <Link className="text-4xl self-start" to="/">
         TaskBoard
       </Link>
-      <div className="flex justify-around gap-6 items-center">
-        <Link className="text-xl" to="/tryme">
-          Try Me
-        </Link>
-        <Link className="text-xl" to="/login">
-          Login
-        </Link>
-        {/* <a className='text-2xl'>Logout</a> */}
-        <Link className="text-xl" to="/register">
-          Register
-        </Link>
-        <ButtonBurger />
-      </div>
+      {toggleBurger ? (
+        <nav className="flex flex-col justify-around gap-6 items-center md:flex-row">
+          <Link className="text-xl" to="/try-me">
+            Try Me
+          </Link>
+          <Link className="text-xl" to="/login">
+            Login
+          </Link>
+          <Link className="text-xl" to="/register">
+            Register
+          </Link>
+          <ButtonBurger onClick={handleBurger} />
+        </nav>
+      ) : (
+        <nav className="flex flex-row justify-around gap-6 items-center">
+          <Link className="text-xl hidden md:block" to="/try-me">
+            Try Me
+          </Link>
+          <Link className="text-xl hidden md:block" to="/login">
+            Login
+          </Link>
+          <Link className="text-xl hidden md:block" to="/register">
+            Register
+          </Link>
+          <ButtonBurger onClick={handleBurger} className="order-first" />
+        </nav>
+      )}
     </header>
   );
 }

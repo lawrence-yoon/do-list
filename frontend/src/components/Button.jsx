@@ -258,10 +258,16 @@ export const ButtonRegister = function ({ onClick = () => {}, ...rest }) {
   );
 };
 
-export const ButtonBurger = function ({ onClick = () => {}, ...rest }) {
+export const ButtonBurger = function ({
+  className,
+  onClick = () => {},
+  ...rest
+}) {
   return (
-    <Button
-      className="border border-transparent flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:border-white"
+    <button
+      className={`flex text-md font-semibold order-first p-2 pb-2.5 px-3 mx-auto md:hidden ${
+        className ? className : ""
+      }`}
       onClick={onClick}
       {...rest}
     >
@@ -279,6 +285,6 @@ export const ButtonBurger = function ({ onClick = () => {}, ...rest }) {
           d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
         />
       </svg>
-    </Button>
+    </button>
   );
 };

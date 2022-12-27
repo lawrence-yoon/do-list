@@ -10,12 +10,14 @@ function App() {
     <>
       <Router>
         <Header />
+        {/* <p>testbefore routes</p> */}
         <Routes>
           <Route path="/" element={<Dashboard />}></Route>
-          <Route path="/tryme" element={<TryMe />}></Route>
+          <Route path="/try-me" element={<TryMe />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
         </Routes>
+        {/* <p>testafter routes</p> */}
       </Router>
     </>
   );
