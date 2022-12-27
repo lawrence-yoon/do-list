@@ -19,6 +19,8 @@ function TryMe() {
           setList={setListDo}
           setListLeft={setListDone}
           setListRight={setListDoing}
+          left="Done"
+          right="Doing"
           label="✍️ Do List"
         />
         <List
@@ -26,6 +28,8 @@ function TryMe() {
           setList={setListDoing}
           setListLeft={setListDo}
           setListRight={setListDone}
+          left="Do"
+          right="Done"
           label="✍️ Doing List"
         />
         <List
@@ -33,6 +37,8 @@ function TryMe() {
           setList={setListDone}
           setListLeft={setListDoing}
           setListRight={setListDo}
+          left="Doing"
+          right="Do"
           label="✍️ Done List"
         />
       </div>
