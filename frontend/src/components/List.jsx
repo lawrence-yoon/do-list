@@ -128,7 +128,7 @@ export default function List({
 
   return (
     <div className="max-w-md min-w-[300px] border-black border-2 rounded-lg flex flex-col p-2 relative bg-blue-600">
-      <h1 className="text-3xl font-bold pt-6 pb-3 text-center">{label}</h1>
+      <h1 className="text-3xl pt-6 pb-3 text-center">{label}</h1>
 
       <NoteArea>
         {list.map((elem, index) => (
