@@ -243,7 +243,7 @@ export const ButtonRight = function ({ onClick = () => {}, ...rest }) {
 export const ButtonLogin = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border-2 border-black bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:bg-blue-400 hover:border-white"
+      className="border-2 border-black bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-4 m-1 mx-auto rounded-full hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -255,7 +255,7 @@ export const ButtonLogin = function ({ onClick = () => {}, ...rest }) {
 export const ButtonRegister = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border-2 border-black bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:bg-blue-400 hover:border-white"
+      className="border-2 border-black bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-4 m-1 mx-auto rounded-full hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >

@@ -127,7 +127,7 @@ export default function List({
   }
 
   return (
-    <div className="max-w-md min-w-[300px] border-black border-2 rounded-lg flex flex-col p-2 relative bg-blue-600">
+    <div className="max-w-md min-w-[300px] drop-shadow-lg border-black border-2 rounded-lg flex flex-col p-2 relative bg-blue-600">
       <h1 className="text-3xl pt-6 pb-3 text-center">{label}</h1>
 
       <NoteArea>
@@ -190,7 +190,7 @@ export default function List({
 
 export function NoteArea({ children, ...rest }) {
   return (
-    <div className="container min-h-[200px] border-2 border-black flex flex-col bg-blue-700 mx-auto p-1 mb-2 rounded-md md:min-w-[25%]">
+    <div className="container min-h-[200px] border-2 border-black flex flex-col bg-blue-700 mx-auto p-2 mb-2 rounded-md md:min-w-[25%]">
       {children}
     </div>
   );
