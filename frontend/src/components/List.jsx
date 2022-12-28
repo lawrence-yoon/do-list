@@ -144,7 +144,7 @@ export default function List({
       </NoteArea>
 
       <div className="flex justify-end">
-        <ButtonNote onClick={handleNote} />
+        <ButtonNote onClick={handleNote} title="Create New Item" />
       </div>
 
       {/* MODALS */}

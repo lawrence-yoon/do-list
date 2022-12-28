@@ -14,9 +14,9 @@ function Note({
         <p className="text-sm ">{entry.details}</p>
       </div>
       <div className="flex flex-col justify-between">
-        <ButtonOptions onClick={() => onClickEdit(id)} />
-        <ButtonMove onClick={() => onClickMove(id)} />
-        <ButtonTrash onClick={() => onClickDelete(id)} />
+        <ButtonOptions onClick={() => onClickEdit(id)} title="Edit" />
+        <ButtonMove onClick={() => onClickMove(id)} title="Move" />
+        <ButtonTrash onClick={() => onClickDelete(id)} title="Delete" />
       </div>
     </section>
   );

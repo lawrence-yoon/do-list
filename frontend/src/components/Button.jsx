@@ -1,9 +1,15 @@
-export default function Button({ children, className, onClick = () => {} }) {
+export default function Button({
+  children,
+  className,
+  title,
+  onClick = () => {},
+}) {
   const defaultClassNames = "shadow-md focus:cursor-pointer";
   return (
     <button
       className={`${defaultClassNames} ${className ? className : ""}`}
       onClick={onClick}
+      title={title}
     >
       {children}
     </button>
