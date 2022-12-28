@@ -21,7 +21,7 @@ function TryMe() {
           setListRight={setListDoing}
           left="Done"
           right="Doing"
-          label="✍️ Do List"
+          label="Do List"
         />
         <List
           list={listDoing}
@@ -30,7 +30,7 @@ function TryMe() {
           setListRight={setListDone}
           left="Do"
           right="Done"
-          label="✍️ Doing List"
+          label="Doing List"
         />
         <List
           list={listDone}
@@ -39,9 +39,16 @@ function TryMe() {
           setListRight={setListDo}
           left="Doing"
           right="Do"
-          label="✍️ Done List"
+          label="Done List"
         />
       </div>
+      <p className="text-center">
+        <i>
+          If you like the app, register so that you can access your data from
+          any device. The data on this page is saved to your local storage on
+          your device.
+        </i>
+      </p>
     </div>
   );
 }

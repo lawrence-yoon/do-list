@@ -9,7 +9,7 @@ export default function Modal({ children, ...rest }) {
       onClick={handleCancel}
     >
       <div
-        className="flex flex-col border rounded-md bg-gray-700 p-1 w-10/12"
+        className="flex flex-col border rounded-md bg-blue-700 p-1 w-10/12"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -20,13 +20,13 @@ export default function Modal({ children, ...rest }) {
   );
 }
 
-export const TestModal = () => {
-  return (
-    <Modal>
-      <h1>hi</h1>
-    </Modal>
-  );
-};
+// export const TestModal = () => {
+//   return (
+//     <Modal>
+//       <h1>hi</h1>
+//     </Modal>
+//   );
+// };
 
 export function ModalNote({
   text,
@@ -41,7 +41,7 @@ export function ModalNote({
       onClick={handleCancel}
     >
       <div
-        className="flex flex-col border rounded-md bg-gray-700 p-1 w-10/12"
+        className="flex flex-col border rounded-md bg-blue-700 p-1 w-10/12"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -77,7 +77,7 @@ export function ModalDelete({
       onClick={handleCancel}
     >
       <div
-        className="flex flex-col border rounded-md bg-gray-700 p-1 w-10/12 break-words overflow-hidden"
+        className="flex flex-col border rounded-md bg-blue-700 p-1 w-10/12 break-words overflow-hidden"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -109,7 +109,7 @@ export function ModalMove({
       onClick={handleCancel}
     >
       <div
-        className="flex flex-col border rounded-md bg-gray-700 p-1 w-10/12 break-words overflow-hidden"
+        className="flex flex-col border rounded-md bg-blue-700 p-1 w-10/12 break-words overflow-hidden"
         onClick={(e) => {
           e.stopPropagation();
         }}

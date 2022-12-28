@@ -13,7 +13,7 @@ export default function Button({ children, className, onClick = () => {} }) {
 export const ButtonNote = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-lg items-center font-semibold p-5 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-lg items-center font-semibold p-5 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -38,7 +38,7 @@ export const ButtonNote = function ({ onClick = () => {}, ...rest }) {
 export const ButtonOptions = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -63,7 +63,7 @@ export const ButtonOptions = function ({ onClick = () => {}, ...rest }) {
 export const ButtonTrash = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -88,7 +88,7 @@ export const ButtonTrash = function ({ onClick = () => {}, ...rest }) {
 export const ButtonConfirm = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent bg-gray-600 flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent bg-blue-500 flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -100,7 +100,7 @@ export const ButtonConfirm = function ({ onClick = () => {}, ...rest }) {
 export const ButtonCancel = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -112,7 +112,7 @@ export const ButtonCancel = function ({ onClick = () => {}, ...rest }) {
 export const ButtonMove = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-md items-center font-semibold p-2 pb-2.5 px-3 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -137,7 +137,7 @@ export const ButtonMove = function ({ onClick = () => {}, ...rest }) {
 export const ButtonArchiveBox = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-lg items-center font-semibold p-5 m-1 rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-lg items-center font-semibold p-5 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -162,7 +162,7 @@ export const ButtonArchiveBox = function ({ onClick = () => {}, ...rest }) {
 export const ButtonPencil = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -187,7 +187,7 @@ export const ButtonPencil = function ({ onClick = () => {}, ...rest }) {
 export const ButtonLeft = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -212,7 +212,7 @@ export const ButtonLeft = function ({ onClick = () => {}, ...rest }) {
 export const ButtonRight = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-gray-800 hover:border-white"
+      className="border border-transparent flex text-xs items-center font-semibold p-2 m-1 rounded-full hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -237,7 +237,7 @@ export const ButtonRight = function ({ onClick = () => {}, ...rest }) {
 export const ButtonLogin = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -249,7 +249,7 @@ export const ButtonLogin = function ({ onClick = () => {}, ...rest }) {
 export const ButtonRegister = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border border-transparent bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:bg-gray-800 hover:border-white"
+      className="border border-transparent bg-gray-600 flex text-md font-semibold p-2 pb-2.5 px-3 m-1 mx-auto rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
