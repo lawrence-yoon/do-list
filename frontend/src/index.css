@@ -4,10 +4,10 @@
 
 html {
   @apply bg-orange-300;
+  @apply font-sans;
 }
 
 /* this one breaks with chrome */
 /* .height-webkit {
   height: -webkit-fill-available
 } */
-

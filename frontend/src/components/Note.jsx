@@ -8,7 +8,7 @@ function Note({
   onClickMove = () => {},
 }) {
   return (
-    <section className="bg-blue-500 p-2 rounded-sm m-1 flex flex-row align-middle justify-between">
+    <section className="bg-blue-500 border-2 border-black p-2 rounded-sm m-1 flex flex-row align-middle justify-between">
       <div className="break-words overflow-hidden">
         <h2 className="text-lg bold">{entry.title}</h2>
         <p className="text-sm ">{entry.details}</p>
