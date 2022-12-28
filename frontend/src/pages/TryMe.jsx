@@ -2,7 +2,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import List from "../components/List";
 
 function TryMe() {
-  const initialListState = [{ title: "", details: "" }];
+  const initialListState = [];
 
   const [listDo, setListDo] = useLocalStorage("listDo", initialListState);
   const [listDoing, setListDoing] = useLocalStorage(
