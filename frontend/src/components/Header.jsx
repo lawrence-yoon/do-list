@@ -11,7 +11,7 @@ function Header() {
   const [toggleBurger, setToggleBurger] = useState(false);
 
   return (
-    <header className="bg-orange-500 border-y-2 border-black flex flex-row justify-between items-center p-1 px-3">
+    <header className="bg-orange-500 flex flex-row justify-between items-center p-1 px-3">
       <Link className="text-4xl self-start" to="/">
         TaskBoard
       </Link>
