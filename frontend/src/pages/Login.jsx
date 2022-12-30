@@ -7,10 +7,35 @@ function Login() {
     email: "",
     password: "",
   });
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   function handleTextChange(e) {
     setField((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
+
+  function handleLogin() {
+    fetch("/api/items2")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
   return (
     <div className="flex flex-col mx-auto w-60 py-5">
       <h2 className="text-3xl text-center my-5">Login</h2>
@@ -28,7 +53,7 @@ function Login() {
         value={field.password}
         onChange={handleTextChange}
       />
-      <ButtonLogin />
+      <ButtonLogin onClick={handleLogin} />
     </div>
   );
 }

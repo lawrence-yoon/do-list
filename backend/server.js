@@ -122,7 +122,8 @@ app.get("/api/items", auth, (req, res) => {
 
 //test free access endpoint
 app.get("/api/items2", (req, res) => {
-  res.json({ message: "this is the free access" });
+  console.log("get request sent to api/items2");
+  res.send({ message: "this is the free access" });
 });
 
 app.listen(port, () => {
