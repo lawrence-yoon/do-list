@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ButtonBurger } from "./Button";
+import { ButtonBurger } from "../ui/Button";
 
 function Header({ token, handleToken = () => {} }) {
   function handleBurger() {

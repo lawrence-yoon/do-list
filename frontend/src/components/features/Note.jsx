@@ -1,4 +1,4 @@
-import { ButtonTrash, ButtonOptions, ButtonMove } from "./Button";
+import { ButtonTrash, ButtonOptions, ButtonMove } from "../ui/Button";
 
 function Note({
   id,

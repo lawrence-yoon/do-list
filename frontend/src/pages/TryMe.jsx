@@ -1,5 +1,5 @@
 import useLocalStorage from "../hooks/useLocalStorage";
-import List from "../components/List";
+import List from "../components/features/List";
 
 function TryMe() {
   const initialListState = [];

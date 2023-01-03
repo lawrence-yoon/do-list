@@ -1,5 +1,5 @@
 import Note from "./Note";
-import { ButtonNote } from "./Button";
+import { ButtonNote } from "../ui/Button";
 import { ModalNote, ModalDelete, ModalMove } from "./Modal";
 import { useState } from "react";
 

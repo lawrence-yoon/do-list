@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Header from "./components/features/Header";
 import TryMe from "./pages/TryMe";
 import Login from "./pages/Login";
 import Register from "./pages/Register";

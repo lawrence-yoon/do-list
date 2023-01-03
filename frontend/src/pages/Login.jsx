@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TextField from "../components/TextField";
-import { ButtonLogin } from "../components/Button";
+import TextField from "../components/ui/TextField";
+import { ButtonLogin } from "../components/ui/Button";
 
 function Login({ token, handleToken = () => {} }) {
   const [field, setField] = useState({

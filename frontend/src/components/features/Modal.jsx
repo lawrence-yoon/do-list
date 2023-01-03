@@ -1,6 +1,11 @@
-import TextFieldArea from "./TextFieldArea";
-import TextField from "./TextField";
-import { ButtonConfirm, ButtonCancel, ButtonLeft, ButtonRight } from "./Button";
+import TextFieldArea from "../ui/TextFieldArea";
+import TextField from "../ui/TextField";
+import {
+  ButtonConfirm,
+  ButtonCancel,
+  ButtonLeft,
+  ButtonRight,
+} from "../ui/Button";
 
 export default function Modal({ children, ...rest }) {
   return (

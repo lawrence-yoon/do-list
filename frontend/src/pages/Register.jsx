@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TextField from "../components/TextField";
-import { ButtonRegister } from "../components/Button";
+import TextField from "../components/ui/TextField";
+import { ButtonRegister } from "../components/ui/Button";
 
 function Register() {
   const [field, setField] = useState({
