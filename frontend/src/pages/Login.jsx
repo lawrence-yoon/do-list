@@ -15,7 +15,8 @@ function Login() {
     setField((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleLogin() {
+  //test free access endpoint
+  function handleTest() {
     fetch("/api/items2")
       .then((response) => {
         if (response.ok) {
@@ -30,6 +31,37 @@ function Login() {
       .catch((error) => {
         console.error("Error fetching data: ", error);
         setError(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    fetch("/api/users/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: field.email,
+        password: field.password,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        alert("Login failed");
       })
       .finally(() => {
         setIsLoading(false);

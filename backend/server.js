@@ -102,9 +102,10 @@ app.post("/api/users/login", (req, res) => {
         })
         .catch((error) => {
           res.status(400).send({
-            mesage: "Incorrect Password",
+            message: "Incorrect Password",
             error,
           });
+          console.log("incorrect password");
         });
     })
     .catch((e) => {
@@ -112,6 +113,7 @@ app.post("/api/users/login", (req, res) => {
         message: "Email not found",
         e,
       });
+      console.log("email not found");
     });
 });
 
