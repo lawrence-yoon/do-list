@@ -13,20 +13,20 @@ function App() {
   return (
     <>
       <Router>
-        <Header token={token} handleToken={setToken} />
+        <Header loginToken={token} handleToken={setToken} />
         <Routes>
           <Route
             path="/"
-            element={<Dashboard token={token} handleToken={setToken} />}
+            element={<Dashboard loginToken={token} handleToken={setToken} />}
           ></Route>
           <Route path="/try-me" element={<TryMe />}></Route>
           <Route
             path="/login"
-            element={<Login token={token} handleToken={setToken} />}
+            element={<Login loginToken={token} handleToken={setToken} />}
           ></Route>
           <Route
             path="/register"
-            element={<Register token={token} handleToken={setToken} />}
+            element={<Register loginToken={token} handleToken={setToken} />}
           ></Route>
           <Route
             path="/logout"

@@ -4,6 +4,11 @@ import List from "../components/features/List";
 function Dashboard() {
   useEffect(() => {
     //test free access endpoint
+    //get all items with that token? get all items associated with login.
+    //need to figure it out for sure.
+    //maybe make a state for user info? maybe save it in same place token is. maybe i just need to pass token.
+
+    //add handlers for all buttons here. handlers will send post/put/delete requests to protected endpoints.
     fetch("/api/items2")
       .then((response) => {
         if (response.ok) {
