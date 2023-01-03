@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonBurger } from "./Button";
 
-function Header() {
+function Header({ token, handleToken = () => {} }) {
   function handleBurger() {
     setToggleBurger((prev) => !prev);
     alert(toggleBurger);
@@ -20,12 +20,20 @@ function Header() {
           <Link className="text-xl" to="/try-me">
             Try Me
           </Link>
-          <Link className="text-xl" to="/login">
-            Login
-          </Link>
-          <Link className="text-xl" to="/register">
-            Register
-          </Link>
+          {token ? (
+            <Link className="text-xl hidden md:block" to="/logout">
+              Logout
+            </Link>
+          ) : (
+            <>
+              <Link className="text-xl" to="/login">
+                Login
+              </Link>
+              <Link className="text-xl" to="/register">
+                Register
+              </Link>
+            </>
+          )}
           <ButtonBurger onClick={handleBurger} />
         </nav>
       ) : (
@@ -33,12 +41,20 @@ function Header() {
           <Link className="text-xl hidden md:block" to="/try-me">
             Try Me
           </Link>
-          <Link className="text-xl hidden md:block" to="/login">
-            Login
-          </Link>
-          <Link className="text-xl hidden md:block" to="/register">
-            Register
-          </Link>
+          {token ? (
+            <Link className="text-xl hidden md:block" to="/logout">
+              Logout
+            </Link>
+          ) : (
+            <>
+              <Link className="text-xl" to="/login">
+                Login
+              </Link>
+              <Link className="text-xl" to="/register">
+                Register
+              </Link>
+            </>
+          )}
           <ButtonBurger onClick={handleBurger} className="order-first" />
         </nav>
       )}

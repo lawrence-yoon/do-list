@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextField from "../components/TextField";
 import { ButtonLogin } from "../components/Button";
 
-function Login() {
+function Login({ token, handleToken = () => {} }) {
   const [field, setField] = useState({
     email: "",
     password: "",
@@ -13,28 +13,6 @@ function Login() {
 
   function handleTextChange(e) {
     setField((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  //test free access endpoint
-  function handleTest() {
-    fetch("/api/items2")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-        setError(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }
 
   function handleLogin(e) {
@@ -56,7 +34,7 @@ function Login() {
         throw response;
       })
       .then((data) => {
-        console.log(data);
+        handleToken(data.token);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
