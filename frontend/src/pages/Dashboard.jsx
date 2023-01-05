@@ -59,7 +59,7 @@ function Dashboard({ loginToken, handleToken = () => {} }) {
 
   return (
     <div className="bg-orange-300 h-full flex flex-col justify-between">
-      <div className="flex flex-row items-start py-5 overflow-auto md:gap-3 md:justify-center">
+      <div className="flex flex-row items-start p-5 overflow-auto">
         <List
           list={listDo}
           setList={setListDo}

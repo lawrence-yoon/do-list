@@ -13,7 +13,7 @@ function TryMe() {
 
   return (
     <div className="bg-orange-300 h-full">
-      <div className="flex flex-row items-start py-5 overflow-auto md:gap-3 md:justify-center">
+      <div className="flex flex-row items-start p-5 overflow-auto gap-3">
         <List
           list={listDo}
           setList={setListDo}
