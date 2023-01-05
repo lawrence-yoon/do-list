@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import List from "../components/features/List";
+import Footer from "../components/features/Footer";
 
 function Dashboard({ loginToken, handleToken = () => {} }) {
   // useEffect(() => {
@@ -57,7 +58,7 @@ function Dashboard({ loginToken, handleToken = () => {} }) {
   const [isLinked, setIsLinked] = useState(false);
 
   return (
-    <div className="bg-orange-300 h-full">
+    <div className="bg-orange-300 h-full flex flex-col justify-between">
       <div className="flex flex-row items-start py-5 overflow-auto md:gap-3 md:justify-center">
         <List
           list={listDo}
@@ -87,13 +88,7 @@ function Dashboard({ loginToken, handleToken = () => {} }) {
           label="Done List"
         />
       </div>
-      {}
-      <p className="text-center">
-        <i>
-          If you like the app, register so that you can access your data from
-          any device.
-        </i>
-      </p>
+      <Footer />
     </div>
   );
 }
