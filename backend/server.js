@@ -120,6 +120,7 @@ app.post("/api/users/login", (req, res) => {
 //test auth endpoint
 app.get("/api/items", auth, (req, res) => {
   res.json({ message: "you are now authorized to get items" });
+  const email = req.body.email;
 });
 
 //test free access endpoint

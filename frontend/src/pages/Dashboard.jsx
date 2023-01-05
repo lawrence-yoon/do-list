@@ -1,45 +1,55 @@
 import { useState, useEffect } from "react";
 import List from "../components/features/List";
 
-function Dashboard() {
-  useEffect(() => {
-    //test free access endpoint
-    //get all items with that token? get all items associated with login.
-    //need to figure it out for sure.
-    //maybe make a state for user info? maybe save it in same place token is. maybe i just need to pass token.
+function Dashboard({ loginToken, handleToken = () => {} }) {
+  // useEffect(() => {
+  //   //test free access endpoint
+  //   //get all items with that token? get all items associated with login.
+  //   //need to figure it out for sure.
+  //   //maybe make a state for user info? maybe save it in same place token is. maybe i just need to pass token.
 
-    //add handlers for all buttons here. handlers will send post/put/delete requests to protected endpoints.
-    fetch("/api/items2")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        setData(data);
-        console.log(data);
-        setIsLinked((prev) => !prev);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-        setError(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+  //   {
+  //     loginToken &&
+  //       fetch("/api/items", {
+  //         method: "GET",
+  //         body: JSON.stringify({
+  //           email: loginToken.email,
+  //         }),
+  //         headers: {
+  //           "Content-type": "application/json",
+  //           Authorization: `Bearer ${loginToken.token}`,
+  //         },
+  //       })
+  //         .then((response) => {
+  //           if (response.ok) {
+  //             return response.json();
+  //           }
+  //           throw response;
+  //         })
+  //         .then((data) => {
+  //           setData(data);
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error fetching data: ", error);
+  //           setError(error);
+  //           alert("Login failed");
+  //           //this get request is not going as planned need to figure it out.
+  //           //create some console logs for this auth endpoint. check the terminal
+  //         })
+  //         .finally(() => {
+  //           setIsLoading(false);
+  //         });
+  //   }
+  // }, []);
   const initialListState = [];
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  //remove the local state and put in useEffect to grab data from get endpoint with token.
-  //may have to get token from parent? parent reach down into login to get token and save token in parent.
-  //wait, this is weird. i copy pasted this code from the try me. and this state was retrieved from same place in local state it seems.
-  //definitely dont need to do any token shenanigans with lifting up in state.
-  //should be able to access it with the localstorage.
+  //add handlers for all buttons here. handlers will send post/put/delete requests to protected endpoints.
 
+  //retrieve data, use the setters to update list data, render data from lists. from the get.
+  //post and delete handler buttons send requests to endpoints. the useeffect should update lists with useeffect.
   const [listDo, setListDo] = useState(initialListState);
   const [listDoing, setListDoing] = useState(initialListState);
   const [listDone, setListDone] = useState(initialListState);
