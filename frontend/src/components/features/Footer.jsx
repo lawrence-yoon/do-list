@@ -4,7 +4,9 @@ function Footer() {
   return (
     <div className="flex flex-col items-center">
       <p>
-        <i>Made from scratch. React-Router, React-Icons, Vite</i>
+        <i>
+          Made from scratch. Frontend made with React-Router, React-Icons, Vite.
+        </i>
       </p>
       <p>© Lawrence Yoon 2023</p>
 

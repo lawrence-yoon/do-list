@@ -2,46 +2,43 @@ import { useState, useEffect } from "react";
 import List from "../components/features/List";
 import Footer from "../components/features/Footer";
 
-function Dashboard({ loginToken, handleToken = () => {} }) {
-  // useEffect(() => {
-  //   //test free access endpoint
-  //   //get all items with that token? get all items associated with login.
-  //   //need to figure it out for sure.
-  //   //maybe make a state for user info? maybe save it in same place token is. maybe i just need to pass token.
-
-  //   {
-  //     loginToken &&
-  //       fetch("/api/items", {
-  //         method: "GET",
-  //         body: JSON.stringify({
-  //           email: loginToken.email,
-  //         }),
-  //         headers: {
-  //           "Content-type": "application/json",
-  //           Authorization: `Bearer ${loginToken.token}`,
-  //         },
-  //       })
-  //         .then((response) => {
-  //           if (response.ok) {
-  //             return response.json();
-  //           }
-  //           throw response;
-  //         })
-  //         .then((data) => {
-  //           setData(data);
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error fetching data: ", error);
-  //           setError(error);
-  //           alert("Login failed");
-  //           //this get request is not going as planned need to figure it out.
-  //           //create some console logs for this auth endpoint. check the terminal
-  //         })
-  //         .finally(() => {
-  //           setIsLoading(false);
-  //         });
-  //   }
-  // }, []);
+function Dashboard({ token, handleToken = () => {} }) {
+  useEffect(() => {
+    //cannot send body with get request
+    {
+      token &&
+        fetch("/api/items", {
+          // method: "GET",
+          // body: JSON.stringify({
+          //   email: token.email,
+          // }),
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token.token}`,
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw response;
+          })
+          .then((data) => {
+            setData(data);
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error("Error fetching data in useEffect: ", error);
+            setError(error);
+            alert("Login failed");
+            //this get request is not going as planned need to figure it out.
+            //create some console logs for this auth endpoint. check the terminal
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+    }
+  }, []);
   const initialListState = [];
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -58,8 +55,9 @@ function Dashboard({ loginToken, handleToken = () => {} }) {
   const [isLinked, setIsLinked] = useState(false);
 
   return (
-    <div className="bg-orange-300 h-full flex flex-col justify-between">
-      <div className="flex flex-row items-start p-5 overflow-auto">
+    <div className="bg-orange-300 h-full flex flex-col">
+      <h1>{token.name} logged in</h1>
+      <div className="flex flex-row items-start p-5 overflow-auto gap-2">
         <List
           list={listDo}
           setList={setListDo}

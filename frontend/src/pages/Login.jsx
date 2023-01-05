@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextField from "../components/ui/TextField";
 import { ButtonLogin } from "../components/ui/Button";
 
-function Login({ loginToken, handleToken = () => {} }) {
+function Login({ token, handleToken = () => {} }) {
   const [field, setField] = useState({
     email: "",
     password: "",
@@ -34,7 +34,7 @@ function Login({ loginToken, handleToken = () => {} }) {
         throw response;
       })
       .then((data) => {
-        handleToken({ token: data.token, email: data.email });
+        handleToken(data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -48,7 +48,7 @@ function Login({ loginToken, handleToken = () => {} }) {
 
   return (
     <>
-      {loginToken ? (
+      {token ? (
         <p>logged in</p>
       ) : (
         <div className="flex flex-col mx-auto w-60 py-5">

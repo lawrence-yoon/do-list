@@ -22,13 +22,14 @@ app.get("/api", (req, res) => {
 });
 
 //Create Item
-app.post("/api/items", (req, res) => {
+app.post("/api/items", auth, (req, res) => {
   console.log("post request sent to /api/items");
   console.log(req.body);
   const item = new Item({
     title: req.body.title,
     details: req.body.details,
     list: req.body.list,
+    user: req.user.userId,
   });
   item.save();
   res.status(200).json(item);
@@ -96,6 +97,8 @@ app.post("/api/users/login", (req, res) => {
           );
           res.status(200).send({
             message: "Login Successful",
+            _id: user.id,
+            name: user.name,
             email: user.email,
             token,
           });
@@ -120,7 +123,8 @@ app.post("/api/users/login", (req, res) => {
 //test auth endpoint
 app.get("/api/items", auth, (req, res) => {
   res.json({ message: "you are now authorized to get items" });
-  const email = req.body.email;
+  // const email = req.body.email;
+  console.log("get request sent to /api/items");
 });
 
 //test free access endpoint
