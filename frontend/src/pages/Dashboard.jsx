@@ -24,8 +24,12 @@ function Dashboard({ token, handleToken = () => {} }) {
             throw response;
           })
           .then((data) => {
-            setData(data);
+            // setData(data);
             console.log(data);
+            alert(token.message);
+            setListDo(data.filter((elem) => elem.list === "do"));
+            setListDoing(data.filter((elem) => elem.list === "doing"));
+            setListDone(data.filter((elem) => elem.list === "done"));
           })
           .catch((error) => {
             console.error("Error fetching data in useEffect: ", error);
@@ -46,7 +50,7 @@ function Dashboard({ token, handleToken = () => {} }) {
 
   //add handlers for all buttons here. handlers will send post/put/delete requests to protected endpoints.
 
-  //retrieve data, use the setters to update list data, render data from lists. from the get.
+  //retrieve data, use the setters to update list data, render data from lists. from the get. then sort by "list" key and values
   //post and delete handler buttons send requests to endpoints. the useeffect should update lists with useeffect.
   const [listDo, setListDo] = useState(initialListState);
   const [listDoing, setListDoing] = useState(initialListState);
@@ -54,6 +58,7 @@ function Dashboard({ token, handleToken = () => {} }) {
 
   const [isLinked, setIsLinked] = useState(false);
 
+  //handle submit, will send the body with specific list "do" "doing" "done"
   return (
     <div className="bg-orange-300 h-full flex flex-col">
       <h1>{token.name} logged in</h1>

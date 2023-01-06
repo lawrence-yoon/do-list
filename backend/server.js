@@ -120,11 +120,14 @@ app.post("/api/users/login", (req, res) => {
     });
 });
 
-//test auth endpoint
+//GET items protected
 app.get("/api/items", auth, (req, res) => {
-  res.json({ message: "you are now authorized to get items" });
-  // const email = req.body.email;
   console.log("get request sent to /api/items");
+  Item.find({ user: req.user.userId }).then((stuff) => {
+    res.status(200).json(stuff);
+  });
+  // res.status(200).json(items);
+  // res.json({ message: "you are now authorized to get items" });
 });
 
 //test free access endpoint
