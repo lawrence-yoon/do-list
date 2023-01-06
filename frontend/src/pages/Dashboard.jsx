@@ -25,8 +25,8 @@ function Dashboard({ token, handleToken = () => {} }) {
           })
           .then((data) => {
             // setData(data);
-            console.log(data);
-            alert(token.message);
+            // console.log(data);
+            // alert(token.message);
             setListDo(data.filter((elem) => elem.list === "do"));
             setListDoing(data.filter((elem) => elem.list === "doing"));
             setListDone(data.filter((elem) => elem.list === "done"));
@@ -35,8 +35,6 @@ function Dashboard({ token, handleToken = () => {} }) {
             console.error("Error fetching data in useEffect: ", error);
             setError(error);
             alert("Login failed");
-            //this get request is not going as planned need to figure it out.
-            //create some console logs for this auth endpoint. check the terminal
           })
           .finally(() => {
             setIsLoading(false);
@@ -61,7 +59,7 @@ function Dashboard({ token, handleToken = () => {} }) {
   //handle submit, will send the body with specific list "do" "doing" "done"
   return (
     <div className="bg-orange-300 h-full flex flex-col">
-      <h1>{token.name} logged in</h1>
+      {token ? <h1>{token.name} logged in</h1> : <h1>Not logged in</h1>}
       <div className="flex flex-row items-start p-5 overflow-auto gap-2">
         <List
           list={listDo}

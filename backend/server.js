@@ -22,6 +22,7 @@ app.get("/api", (req, res) => {
 });
 
 //Create Item
+//
 app.post("/api/items", auth, (req, res) => {
   console.log("post request sent to /api/items");
   console.log(req.body);
@@ -36,6 +37,7 @@ app.post("/api/items", auth, (req, res) => {
 });
 
 //Create/Register User
+//
 app.post("/api/users/register", (req, res) => {
   console.log("post request sent to /api/users/register");
   console.log(req.body);
@@ -71,6 +73,7 @@ app.post("/api/users/register", (req, res) => {
 });
 
 //Login User
+//
 app.post("/api/users/login", (req, res) => {
   console.log("post request sent to /api/users/login");
   console.log(req.body);
@@ -121,11 +124,22 @@ app.post("/api/users/login", (req, res) => {
 });
 
 //GET items protected
+//
 app.get("/api/items", auth, (req, res) => {
   console.log("get request sent to /api/items");
-  Item.find({ user: req.user.userId }).then((stuff) => {
-    res.status(200).json(stuff);
-  });
+  Item.find({ user: req.user.userId })
+    .then((stuff) => {
+      res.status(200).json(stuff);
+    })
+    .catch((e) => {
+      res.status(500).send({
+        message: "Server error",
+        e,
+      });
+      console.log(
+        "possible a server error, from GET request sent to /api/items"
+      );
+    });
   // res.status(200).json(items);
   // res.json({ message: "you are now authorized to get items" });
 });

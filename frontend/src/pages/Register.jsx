@@ -14,10 +14,11 @@ function Register() {
     setField((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  //maybe add the pasword check here in front end, see if password matches password2. then send just name, email, password
-  //need to make sure props are passed properly
   function handleRegister(e) {
     e.preventDefault();
+    //maybe add the pasword check here in front end, see if password matches password2. then send just name, email, password
+    //need to make sure props are passed properly
+
     fetch("/api/users/register", {
       method: "POST",
       body: JSON.stringify({
