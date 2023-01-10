@@ -7,7 +7,6 @@ function Login({ token, handleToken = () => {} }) {
     email: "",
     password: "",
   });
-  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 

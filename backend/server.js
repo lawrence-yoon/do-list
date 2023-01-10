@@ -41,12 +41,17 @@ app.post("/api/items", auth, (req, res) => {
 app.post("/api/users/register", (req, res) => {
   console.log("post request sent to /api/users/register");
   console.log(req.body);
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    res.status(400).send({ message: "Please add all fields" });
+  }
+
   bcrypt
-    .hash(req.body.password, 10)
+    .hash(password, 10)
     .then((hashedPassword) => {
       const user = new User({
-        name: req.body.name,
-        email: req.body.email,
+        name: name,
+        email: email,
         password: hashedPassword,
       });
       user
@@ -54,7 +59,7 @@ app.post("/api/users/register", (req, res) => {
         .then((result) => {
           res.status(201).send({
             message: "User created successfully",
-            result,
+            email: result.email,
           });
         })
         .catch((error) => {
@@ -77,8 +82,7 @@ app.post("/api/users/register", (req, res) => {
 app.post("/api/users/login", (req, res) => {
   console.log("post request sent to /api/users/login");
   console.log(req.body);
-  const email = req.body.email;
-  const password = req.body.password;
+  const { email, password } = req.body;
   User.findOne({ email: email })
     .then((user) => {
       bcrypt
@@ -128,8 +132,8 @@ app.post("/api/users/login", (req, res) => {
 app.get("/api/items", auth, (req, res) => {
   console.log("get request sent to /api/items");
   Item.find({ user: req.user.userId })
-    .then((stuff) => {
-      res.status(200).json(stuff);
+    .then((payload) => {
+      res.status(200).json(payload);
     })
     .catch((e) => {
       res.status(500).send({
