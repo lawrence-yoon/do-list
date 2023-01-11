@@ -1,5 +1,6 @@
 import useLocalStorage from "../hooks/useLocalStorage";
 import List from "../components/features/List";
+import Footer from "../components/features/Footer";
 
 function TryMe() {
   const initialListState = [];
@@ -49,6 +50,7 @@ function TryMe() {
           your device.
         </i>
       </p>
+      <Footer />
     </div>
   );
 }

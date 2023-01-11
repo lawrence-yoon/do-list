@@ -43,38 +43,49 @@ app.post("/api/users/register", (req, res) => {
   console.log(req.body);
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
-    res.status(400).send({ message: "Please add all fields" });
+    return res.status(400).send({ message: "Please add all fields" });
   }
-
-  bcrypt
-    .hash(password, 10)
-    .then((hashedPassword) => {
-      const user = new User({
-        name: name,
-        email: email,
-        password: hashedPassword,
-      });
-      user
-        .save()
-        .then((result) => {
-          res.status(201).send({
-            message: "User created successfully",
-            email: result.email,
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) {
+      console.log(`Error with mongoose: ${err}`);
+      res.status(400).send({ message: "Error with mongoose", err });
+    }
+    if (user) {
+      // throw an error if the user already exists
+      console.log("Error: User already exists");
+      res.status(400).send({ message: "User already exists" });
+    } else {
+      bcrypt
+        .hash(password, 10)
+        .then((hashedPassword) => {
+          const user = new User({
+            name: name,
+            email: email,
+            password: hashedPassword,
           });
+          user
+            .save()
+            .then((result) => {
+              res.status(201).send({
+                message: "User created successfully",
+                email: result.email,
+              });
+            })
+            .catch((error) => {
+              res.status(500).send({
+                message: "Error creating user",
+                error,
+              });
+            });
         })
-        .catch((error) => {
+        .catch((e) => {
           res.status(500).send({
-            message: "Error creating user",
-            error,
+            message: "Password was not hashed successfully",
+            e,
           });
         });
-    })
-    .catch((e) => {
-      res.status(500).send({
-        message: "Password was not hashed successfully",
-        e,
-      });
-    });
+    }
+  });
 });
 
 //Login User
@@ -83,6 +94,9 @@ app.post("/api/users/login", (req, res) => {
   console.log("post request sent to /api/users/login");
   console.log(req.body);
   const { email, password } = req.body;
+  if (!email || !password) {
+    res.status(400).send({ message: "Please add all fields" });
+  }
   User.findOne({ email: email })
     .then((user) => {
       bcrypt

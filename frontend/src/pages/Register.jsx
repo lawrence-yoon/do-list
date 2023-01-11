@@ -51,6 +51,7 @@ function Register() {
         console.error("Error fetching data: ", error);
         setError(error);
         alert("Register failed");
+        setRegisterSuccess(false);
       })
       .finally(() => {
         setIsLoading(false);
@@ -62,7 +63,7 @@ function Register() {
 
   //may need to touch up on what states should the useeffect watch and what states to be used in the conditional
   useEffect(() => {
-    if (setRegisterSuccess || !setIsLoading) {
+    if (registerSuccess && !isLoading) {
       navigate("/");
     }
   }, [isLoading]);

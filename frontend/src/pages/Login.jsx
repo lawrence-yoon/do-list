@@ -17,6 +17,9 @@ function Login({ token, handleToken = () => {} }) {
 
   function handleLogin(e) {
     e.preventDefault();
+    if (!field.email || !field.password) {
+      return alert("Please fill in all fields");
+    }
     fetch("/api/users/login", {
       method: "POST",
       body: JSON.stringify({
