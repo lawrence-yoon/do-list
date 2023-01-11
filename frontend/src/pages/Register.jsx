@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "../components/ui/TextField";
 import { ButtonRegister } from "../components/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [registerSuccess, setRegisterSuccess] = useState(false);
@@ -55,6 +56,17 @@ function Register() {
         setIsLoading(false);
       });
   }
+
+  //useeffect to navigate
+  const navigate = useNavigate();
+
+  //may need to touch up on what states should the useeffect watch and what states to be used in the conditional
+  useEffect(() => {
+    if (setRegisterSuccess || !setIsLoading) {
+      navigate("/");
+    }
+  }, [isLoading]);
+
   return (
     <>
       {registerSuccess ? (

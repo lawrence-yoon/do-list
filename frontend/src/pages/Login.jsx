@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "../components/ui/TextField";
 import { ButtonLogin } from "../components/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function Login({ token, handleToken = () => {} }) {
   const [field, setField] = useState({
@@ -44,6 +45,15 @@ function Login({ token, handleToken = () => {} }) {
         setIsLoading(false);
       });
   }
+
+  //may need to touch up on what states should the useeffect watch and what states to be used in the conditional
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token || !isLoading) {
+      navigate("/");
+    }
+  }, [isLoading]);
 
   return (
     <>
