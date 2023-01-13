@@ -15,6 +15,7 @@ export default function List({
   const initialTextState = {
     title: "",
     details: "",
+    list: "",
   };
 
   const [text, setText] = useState(initialTextState);

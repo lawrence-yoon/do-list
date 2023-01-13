@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import List from "../components/features/List";
 import Footer from "../components/features/Footer";
+import { text } from "express";
 
 function Dashboard({ token, handleToken = () => {} }) {
   useEffect(() => {
-    //cannot send body with get request
     {
       token &&
         fetch("/api/items", {
@@ -47,6 +47,50 @@ function Dashboard({ token, handleToken = () => {} }) {
   const [isLoading, setIsLoading] = useState(true);
 
   //add handlers for all buttons here. handlers will send post/put/delete requests to protected endpoints.
+  //
+  //probably can make this into one. passing through "list" property. probabl same with the move.
+  function handleCreateDoItem() {
+    e.preventDefault();
+    // if (!field.email || !field.password) {
+    //   return alert("Please fill in all fields");
+    // }
+    fetch("/api/items", {
+      method: "POST",
+      body: JSON.stringify({
+        title: text.title,
+        details: text.detail,
+        list: text.list,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        handleToken(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        alert("Failed to create new item.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+  function handleCreateDoingItem() {}
+  function handleCreateDoneItem() {}
+
+  function handleMoveDoItem() {}
+  function handleMoveDoingItem() {}
+  function handleMoveDoneItem() {}
+
+  function handleDeleteItem() {}
 
   //retrieve data, use the setters to update list data, render data from lists. from the get. then sort by "list" key and values
   //post and delete handler buttons send requests to endpoints. the useeffect should update lists with useeffect.
