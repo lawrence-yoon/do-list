@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import List from "../components/features/List";
 import Footer from "../components/features/Footer";
-import { text } from "express";
 
 function Dashboard({ token, handleToken = () => {} }) {
   useEffect(() => {
