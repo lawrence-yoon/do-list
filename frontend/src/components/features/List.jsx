@@ -11,6 +11,10 @@ export default function List({
   left,
   right,
   label,
+  isDashBoardList,
+  token,
+  countChanges,
+  setCountChanges,
 }) {
   const initialTextState = {
     title: "",
@@ -38,8 +42,43 @@ export default function List({
     setIsNoteModalOpen(true);
   }
 
+  function handleConfirmNoteDB() {
+    fetch("/api/items", {
+      method: "POST",
+      body: JSON.stringify({
+        title: text.title,
+        details: text.details,
+        list: label,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token.token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        alert("Create note failed");
+      })
+      .finally(() => {
+        const newCount = countChanges + 1;
+        setCountChanges(newCount);
+      });
+  }
+
   function handleConfirmNote() {
-    setList((prevList) => [...prevList, text]);
+    isDashBoardList
+      ? handleConfirmNoteDB()
+      : setList((prevList) => [...prevList, text]);
     setText(initialTextState);
     setIsNoteModalOpen(false);
   }
@@ -60,7 +99,11 @@ export default function List({
   }
 
   function handleConfirmDelete() {
-    setList((prev) => prev.filter((elem, index) => index != textTargeted.id));
+    isDashBoardList
+      ? alert("firedhandleconfirmdelete")
+      : setList((prev) =>
+          prev.filter((elem, index) => index != textTargeted.id)
+        );
     setTextTargeted({});
     setIsDeleteModalOpen(false);
   }
@@ -82,9 +125,10 @@ export default function List({
     setIsEditModalOpen(true);
   }
 
+  ///////////////// this needs to be tidied up, the const is throwing off my ternary
   function handleConfirmEdit() {
     const edittedArray = list;
-    edittedArray[textTargeted.id] = text;
+    list[textTargeted.id] = text;
     setList(edittedArray);
     setText(initialTextState);
     setIsEditModalOpen(false);

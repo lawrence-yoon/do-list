@@ -3,6 +3,17 @@ import List from "../components/features/List";
 import Footer from "../components/features/Footer";
 
 function Dashboard({ token, handleToken = () => {} }) {
+  const initialListState = [];
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  //this countChanges is used to trigger a rerender whenever buttons are pressed.
+  const [countChanges, setCountChanges] = useState(0);
+
+  const [listDo, setListDo] = useState(initialListState);
+  const [listDoing, setListDoing] = useState(initialListState);
+  const [listDone, setListDone] = useState(initialListState);
+
   useEffect(() => {
     {
       token &&
@@ -39,65 +50,7 @@ function Dashboard({ token, handleToken = () => {} }) {
             setIsLoading(false);
           });
     }
-  }, []);
-  const initialListState = [];
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  //add handlers for all buttons here. handlers will send post/put/delete requests to protected endpoints.
-  //
-  //probably can make this into one. passing through "list" property. probabl same with the move.
-  function handleCreateDoItem() {
-    e.preventDefault();
-    // if (!field.email || !field.password) {
-    //   return alert("Please fill in all fields");
-    // }
-    fetch("/api/items", {
-      method: "POST",
-      body: JSON.stringify({
-        title: text.title,
-        details: text.detail,
-        list: text.list,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        handleToken(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-        setError(error);
-        alert("Failed to create new item.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-  function handleCreateDoingItem() {}
-  function handleCreateDoneItem() {}
-
-  function handleMoveDoItem() {}
-  function handleMoveDoingItem() {}
-  function handleMoveDoneItem() {}
-
-  function handleDeleteItem() {}
-
-  //retrieve data, use the setters to update list data, render data from lists. from the get. then sort by "list" key and values
-  //post and delete handler buttons send requests to endpoints. the useeffect should update lists with useeffect.
-  const [listDo, setListDo] = useState(initialListState);
-  const [listDoing, setListDoing] = useState(initialListState);
-  const [listDone, setListDone] = useState(initialListState);
-
-  const [isLinked, setIsLinked] = useState(false);
+  }, [countChanges]);
 
   //handle submit, will send the body with specific list "do" "doing" "done"
   return (
@@ -111,7 +64,11 @@ function Dashboard({ token, handleToken = () => {} }) {
           setListRight={setListDoing}
           left="Done"
           right="Doing"
-          label="Do List"
+          label="do"
+          isDashBoardList={true}
+          token={token}
+          countChanges={countChanges}
+          setCountChanges={setCountChanges}
         />
         <List
           list={listDoing}
@@ -120,7 +77,11 @@ function Dashboard({ token, handleToken = () => {} }) {
           setListRight={setListDone}
           left="Do"
           right="Done"
-          label="Doing List"
+          label="doing"
+          isDashBoardList={true}
+          token={token}
+          countChanges={countChanges}
+          setCountChanges={setCountChanges}
         />
         <List
           list={listDone}
@@ -129,7 +90,11 @@ function Dashboard({ token, handleToken = () => {} }) {
           setListRight={setListDo}
           left="Doing"
           right="Do"
-          label="Done List"
+          label="done"
+          isDashBoardList={true}
+          token={token}
+          countChanges={countChanges}
+          setCountChanges={setCountChanges}
         />
       </div>
       <Footer />

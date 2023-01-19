@@ -23,6 +23,7 @@ function TryMe() {
           left="Done"
           right="Doing"
           label="Do List"
+          isDashBoardList={false}
         />
         <List
           list={listDoing}
@@ -32,6 +33,7 @@ function TryMe() {
           left="Do"
           right="Done"
           label="Doing List"
+          isDashBoardList={false}
         />
         <List
           list={listDone}
@@ -41,6 +43,7 @@ function TryMe() {
           left="Doing"
           right="Do"
           label="Done List"
+          isDashBoardList={false}
         />
       </div>
       <p className="text-center">
