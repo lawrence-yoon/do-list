@@ -7,6 +7,7 @@ function Dashboard({ token, handleToken = () => {} }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   //this countChanges is used to trigger a rerender whenever buttons are pressed.
   const [countChanges, setCountChanges] = useState(0);
 
@@ -18,10 +19,6 @@ function Dashboard({ token, handleToken = () => {} }) {
     {
       token &&
         fetch("/api/items", {
-          // method: "GET",
-          // body: JSON.stringify({
-          //   email: token.email,
-          // }),
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${token.token}`,
@@ -34,9 +31,6 @@ function Dashboard({ token, handleToken = () => {} }) {
             throw response;
           })
           .then((data) => {
-            // setData(data);
-            // console.log(data);
-            // alert(token.message);
             setListDo(data.filter((elem) => elem.list === "do"));
             setListDoing(data.filter((elem) => elem.list === "doing"));
             setListDone(data.filter((elem) => elem.list === "done"));

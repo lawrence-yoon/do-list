@@ -19,7 +19,7 @@ export default function Button({
 export const ButtonNote = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border-2 border-black flex text-md items-center font-semibold p-5 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
+      className="border-2 border-black flex text-md items-center font-semibold p-3 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >

@@ -76,6 +76,9 @@ export default function List({
   }
 
   function handleConfirmNote() {
+    if (!text.title || !text.details) {
+      return alert("Please fill out all fields.");
+    }
     isDashBoardList
       ? handleConfirmNoteDB()
       : setList((prevList) => [...prevList, text]);

@@ -21,21 +21,6 @@ app.get("/api", (req, res) => {
   res.send("root for backend taskboard");
 });
 
-//Create Item
-//
-app.post("/api/items", auth, (req, res) => {
-  console.log("post request sent to /api/items");
-  console.log(req.body);
-  const item = new Item({
-    title: req.body.title,
-    details: req.body.details,
-    list: req.body.list,
-    user: req.user.userId,
-  });
-  item.save();
-  res.status(200).json(item);
-});
-
 //Create/Register User
 //
 app.post("/api/users/register", (req, res) => {
@@ -158,15 +143,62 @@ app.get("/api/items", auth, (req, res) => {
         "possible a server error, from GET request sent to /api/items"
       );
     });
-  // res.status(200).json(items);
-  // res.json({ message: "you are now authorized to get items" });
+});
+
+//Create Item
+//
+app.post("/api/items", auth, (req, res) => {
+  console.log("post request sent to /api/items");
+  console.log(req.body);
+  const item = new Item({
+    title: req.body.title,
+    details: req.body.details,
+    list: req.body.list,
+    user: req.user.userId,
+  });
+  item.save();
+  res.status(200).json(item);
+});
+
+//Delete Item
+//
+app.delete("/api/items/:id", auth, (req, res) => {
+  console.log("delete request sent to /api/items/:id");
+  console.log(req.params.id);
+  if (!req.user) {
+    return res.status(401).json({ message: "user not found" });
+  }
+  Item.findById(req.params.id)
+    .then((response) => {
+      if (response.user.toString() !== req.user.userId) {
+        return res.status(401).json({
+          message: "user not authorized",
+          response: response.user,
+          request: req.user.userId,
+        });
+      }
+      Item.deleteOne({ _id: response._id })
+        .then((responseDelete) => {
+          res
+            .status(200)
+            .json({ message: "item delete successful", responseDelete });
+        })
+        .catch((err) => {
+          res.status(400).json({ message: "item delete unsuccessful", err });
+        });
+      console.log(response._id);
+      // res.status(200).json({ response });
+    })
+    .catch((e) => {
+      res.status(400).json({ message: "item not found", e });
+    });
 });
 
 //test free access endpoint
-app.get("/api/items2", (req, res) => {
-  console.log("get request sent to api/items2");
-  res.send({ message: "this is the free access" });
-});
+// app.get("/api/items2", (req, res) => {
+//   console.log("get request sent to api/items2");
+//   res.send({ message: "this is the free access" });
+// });
 
 app.listen(port, () => {
   console.log(`taskboard listening on port ${port}`);
