@@ -13,8 +13,8 @@ function TryMe() {
   const [listDone, setListDone] = useLocalStorage("listDone", initialListState);
 
   return (
-    <div className="bg-orange-300 h-full">
-      <div className="flex flex-row items-start p-5 overflow-auto gap-3">
+    <div className="bg-orange-300">
+      <div className="flex flex-row justify-center p-5 gap-3">
         <List
           list={listDo}
           setList={setListDo}

@@ -315,7 +315,7 @@ export default function List({
   }
 
   return (
-    <div className="w-4/12 drop-shadow-lg border-black border-2 rounded-lg flex flex-col p-2 relative bg-blue-600">
+    <div className="w-4/12 drop-shadow-lg border-black border-2 rounded-lg flex flex-col p-2 bg-blue-600 lg:w-[450px]">
       <h1 className="text-3xl pt-6 pb-3 text-center">{label}</h1>
 
       <NoteArea>

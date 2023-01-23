@@ -55,7 +55,7 @@ function Dashboard({
 
   //handle submit, will send the body with specific list "do" "doing" "done"
   return (
-    <div className="bg-orange-300 h-full flex flex-col">
+    <div className="bg-orange-300">
       {token && isLoggedIn ? (
         <h2 className="text-center text-xl pt-4">Hello {token.name}</h2>
       ) : (
@@ -63,7 +63,7 @@ function Dashboard({
           Please log in, or visit the Try-Me page for an offline experience.
         </h2>
       )}
-      <div className="flex flex-row items-start p-5 overflow-auto gap-2">
+      <div className="flex flex-row justify-center p-5 gap-3">
         <List
           list={listDo}
           setList={setListDo}
