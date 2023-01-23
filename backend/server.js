@@ -195,6 +195,7 @@ app.delete("/api/items/:id", auth, (req, res) => {
 });
 
 //Revise (Update) item
+//this one works even if you dont send the full body aka title details list. im thinking for edit, just send the body. for move, send "list" key and value pair
 //
 app.put("/api/items/:id", auth, (req, res) => {
   console.log("delete request sent to /api/items/:id");

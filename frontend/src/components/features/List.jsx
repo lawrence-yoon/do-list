@@ -94,17 +94,51 @@ export default function List({
   //Delete targeted Note
   //
   function handleDelete(ID) {
-    setTextTargeted({
-      id: ID,
-      data: list[ID],
-    });
+    isDashBoardList
+      ? setTextTargeted({
+          _id: ID,
+          data: list.find((elem) => elem._id == ID),
+        })
+      : setTextTargeted({
+          id: ID,
+          data: list[ID],
+        });
     setIsDeleteModalOpen(true);
+  }
+
+  function handleDeleteNoteDB() {
+    fetch("/api/items/" + textTargeted._id, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token.token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        alert("Delete note failed");
+      })
+      .finally(() => {
+        const newCount = countChanges + 1;
+        setCountChanges(newCount);
+      });
   }
 
   function handleConfirmDelete() {
     isDashBoardList
-      ? alert("firedhandleconfirmdelete")
-      : setList((prev) =>
+      ? handleDeleteNoteDB()
+      : // alert("firedhandleconfirmdelete: " + textTargeted._id)
+        setList((prev) =>
           prev.filter((elem, index) => index != textTargeted.id)
         );
     setTextTargeted({});
@@ -181,9 +215,11 @@ export default function List({
       <NoteArea>
         {list.map((elem, index) => (
           <Note
-            key={index}
+            key={elem._id}
+            _id={elem._id}
             id={index}
             entry={elem}
+            isDashBoardList={isDashBoardList}
             onClickDelete={handleDelete}
             onClickEdit={handleEdit}
             onClickMove={handleMove}
