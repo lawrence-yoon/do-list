@@ -181,7 +181,11 @@ app.delete("/api/items/:id", auth, (req, res) => {
         .then((responseDelete) => {
           res
             .status(200)
-            .json({ message: "item delete successful", responseDelete });
+            .json({
+              message: "item delete successful",
+              responseDelete,
+              id: response._id,
+            });
         })
         .catch((err) => {
           res.status(400).json({ message: "item delete unsuccessful", err });

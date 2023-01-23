@@ -79,9 +79,11 @@ export default function List({
     if (!text.title || !text.details) {
       return alert("Please fill out all fields.");
     }
-    isDashBoardList
-      ? handleConfirmNoteDB()
-      : setList((prevList) => [...prevList, text]);
+    if (isDashBoardList) {
+      handleConfirmNoteDB();
+    } else {
+      setList((prevList) => [...prevList, text]);
+    }
     setText(initialTextState);
     setIsNoteModalOpen(false);
   }
@@ -94,15 +96,17 @@ export default function List({
   //Delete targeted Note
   //
   function handleDelete(ID) {
-    isDashBoardList
-      ? setTextTargeted({
-          _id: ID,
-          data: list.find((elem) => elem._id == ID),
-        })
-      : setTextTargeted({
-          id: ID,
-          data: list[ID],
-        });
+    if (isDashBoardList) {
+      setTextTargeted({
+        _id: ID,
+        data: list.find((elem) => elem._id == ID),
+      });
+    } else {
+      setTextTargeted({
+        id: ID,
+        data: list[ID],
+      });
+    }
     setIsDeleteModalOpen(true);
   }
 
@@ -135,12 +139,12 @@ export default function List({
   }
 
   function handleConfirmDelete() {
-    isDashBoardList
-      ? handleDeleteNoteDB()
-      : // alert("firedhandleconfirmdelete: " + textTargeted._id)
-        setList((prev) =>
-          prev.filter((elem, index) => index != textTargeted.id)
-        );
+    if (isDashBoardList) {
+      handleDeleteNoteDB();
+    } else {
+      // alert("firedhandleconfirmdelete: " + textTargeted._id)
+      setList((prev) => prev.filter((elem, index) => index != textTargeted.id));
+    }
     setTextTargeted({});
     setIsDeleteModalOpen(false);
   }
@@ -154,19 +158,65 @@ export default function List({
   //Edit targeted Note
   //
   function handleEdit(ID) {
-    setTextTargeted({
-      id: ID,
-      data: list[ID],
-    });
-    setText(list[ID]);
+    if (isDashBoardList) {
+      const listData = list.find((elem) => elem._id == ID);
+      setTextTargeted({
+        _id: ID,
+        data: listData,
+      });
+      setText(listData);
+    } else {
+      setTextTargeted({
+        id: ID,
+        data: list[ID],
+      });
+      setText(list[ID]);
+    }
     setIsEditModalOpen(true);
   }
 
-  ///////////////// this needs to be tidied up, the const is throwing off my ternary
+  function handleEditNoteDB() {
+    fetch("/api/items/" + textTargeted._id, {
+      method: "PUT",
+      body: JSON.stringify({
+        title: text.title,
+        details: text.details,
+        // list: label,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token.token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        alert("Edit note failed");
+      })
+      .finally(() => {
+        const newCount = countChanges + 1;
+        setCountChanges(newCount);
+      });
+  }
+
   function handleConfirmEdit() {
-    const edittedArray = list;
-    list[textTargeted.id] = text;
-    setList(edittedArray);
+    if (isDashBoardList) {
+      // alert("handleconfirmedit fired");
+      handleEditNoteDB();
+    } else {
+      const edittedArray = list;
+      list[textTargeted.id] = text;
+      setList(edittedArray);
+    }
     setText(initialTextState);
     setIsEditModalOpen(false);
   }
