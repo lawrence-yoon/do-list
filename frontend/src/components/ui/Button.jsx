@@ -94,7 +94,7 @@ export const ButtonTrash = function ({ onClick = () => {}, ...rest }) {
 export const ButtonConfirm = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border-2 border-black bg-blue-500 flex text-sm items-center font-semibold  p-1  pb-1.5  px-2 m-1 rounded-xl hover:bg-blue-300 hover:border-white"
+      className="border-2 border-black bg-blue-500 flex text-sm items-center font-semibold  p-2  pb-2.5 px-3.5 m-1 rounded-full hover:bg-blue-300 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -106,7 +106,7 @@ export const ButtonConfirm = function ({ onClick = () => {}, ...rest }) {
 export const ButtonCancel = function ({ onClick = () => {}, ...rest }) {
   return (
     <Button
-      className="border-2 border-black flex text-sm items-center font-semibold  p-1  pb-1.5  px-2 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
+      className="border-2 border-black flex text-sm items-center font-semibold  p-2  pb-2.5 px-3.5 m-1 rounded-full hover:bg-blue-400 hover:border-white"
       onClick={onClick}
       {...rest}
     >
@@ -139,56 +139,6 @@ export const ButtonMove = function ({ onClick = () => {}, ...rest }) {
     </Button>
   );
 };
-
-// export const ButtonArchiveBox = function ({ onClick = () => {}, ...rest }) {
-//   return (
-//     <Button
-//       className="border-2 border-black flex text-md items-center font-semibold p-5 m-1 rounded-xl hover:bg-blue-400 hover:border-white"
-//       onClick={onClick}
-//       {...rest}
-//     >
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         fill="none"
-//         viewBox="0 0 24 24"
-//         strokeWidth={1.5}
-//         stroke="currentColor"
-//         className="w-6 h-6"
-//       >
-//         <path
-//           strokeLinecap="round"
-//           strokeLinejoin="round"
-//           d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-//         />
-//       </svg>
-//     </Button>
-//   );
-// };
-
-// export const ButtonPencil = function ({ onClick = () => {}, ...rest }) {
-//   return (
-//     <Button
-//       className="border-2 border-black flex text-xs items-center font-semibold  p-1 m-1 rounded-full hover:bg-blue-400 hover:border-white"
-//       onClick={onClick}
-//       {...rest}
-//     >
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         fill="none"
-//         viewBox="0 0 24 24"
-//         strokeWidth={1.5}
-//         stroke="currentColor"
-//         className="w-6 h-6"
-//       >
-//         <path
-//           strokeLinecap="round"
-//           strokeLinejoin="round"
-//           d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-//         />
-//       </svg>
-//     </Button>
-//   );
-// };
 
 export const ButtonLeft = function ({ onClick = () => {}, ...rest }) {
   return (

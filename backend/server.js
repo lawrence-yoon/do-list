@@ -189,7 +189,6 @@ app.delete("/api/items/:id", auth, (req, res) => {
           res.status(400).json({ message: "item delete unsuccessful", err });
         });
       console.log(response._id);
-      // res.status(200).json({ response });
     })
     .catch((e) => {
       res.status(400).json({ message: "item not found", e });
@@ -197,7 +196,6 @@ app.delete("/api/items/:id", auth, (req, res) => {
 });
 
 //Revise (Update) item
-//this one works even if you dont send the full body aka title details list. im thinking for edit, just send the body. for move, send "list" key and value pair
 //
 app.put("/api/items/:id", auth, (req, res) => {
   console.log("put request sent to /api/items/:id");
@@ -230,12 +228,6 @@ app.put("/api/items/:id", auth, (req, res) => {
       res.status(400).json({ message: "item not found", e });
     });
 });
-
-//test free access endpoint
-// app.get("/api/items2", (req, res) => {
-//   console.log("get request sent to api/items2");
-//   res.send({ message: "this is the free access" });
-// });
 
 app.listen(port, () => {
   console.log(`taskboard listening on port ${port}`);

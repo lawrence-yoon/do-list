@@ -12,6 +12,7 @@ export default function List({
   right,
   label,
   isDashBoardList,
+  isLoggedIn,
   token,
   countChanges,
   setCountChanges,
@@ -80,6 +81,9 @@ export default function List({
       return alert("Please fill out all fields.");
     }
     if (isDashBoardList) {
+      if (!isLoggedIn) {
+        return alert("Please log in.");
+      }
       handleConfirmNoteDB();
     } else {
       setList((prevList) => [...prevList, text]);
@@ -317,7 +321,7 @@ export default function List({
       <NoteArea>
         {list.map((elem, index) => (
           <Note
-            key={elem._id}
+            key={isDashBoardList ? elem._id : index}
             _id={elem._id}
             id={index}
             entry={elem}

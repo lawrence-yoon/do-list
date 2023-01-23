@@ -49,7 +49,7 @@ function TryMe() {
       <p className="text-center">
         <i>
           If you like the app, register so that you can access your data from
-          any device. The data on this page is saved to your local storage on
+          any device. The data on this page is saved to the local storage on
           your device.
         </i>
       </p>
