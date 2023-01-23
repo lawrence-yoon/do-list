@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonBurger } from "../ui/Button";
 
-function Header({ token, handleToken = () => {} }) {
+function Header({ isLoggedIn, token, handleToken = () => {} }) {
   function handleBurger() {
     setToggleBurger((prev) => !prev);
     alert(toggleBurger);
@@ -41,7 +41,7 @@ function Header({ token, handleToken = () => {} }) {
           <Link className="text-xl hidden md:block" to="/try-me">
             Try Me
           </Link>
-          {token ? (
+          {token && isLoggedIn ? (
             <Link className="text-xl hidden md:block" to="/logout">
               Logout
             </Link>

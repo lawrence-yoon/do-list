@@ -7,7 +7,7 @@ function Logout({ handleToken = () => {} }) {
   setTimeout(() => {
     navigate("/");
   }, 5000);
-  return <div>Logout Successful</div>;
+  return <h2 className="text-center text-xl pt-4">Logout Successful</h2>;
 }
 
 export default Logout;

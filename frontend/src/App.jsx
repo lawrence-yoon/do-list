@@ -6,17 +6,27 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Logout from "./pages/Logout";
 import useLocalStorage from "./hooks/useLocalStorage";
+import { useState } from "react";
 
 function App() {
   const [token, setToken] = useLocalStorage("sessionToken", "");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <>
       <Router>
-        <Header token={token} handleToken={setToken} />
+        <Header isLoggedIn={isLoggedIn} token={token} handleToken={setToken} />
         <Routes>
           <Route
             path="/"
-            element={<Dashboard token={token} handleToken={setToken} />}
+            element={
+              <Dashboard
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                token={token}
+                handleToken={setToken}
+              />
+            }
           ></Route>
           <Route path="/try-me" element={<TryMe />}></Route>
           <Route

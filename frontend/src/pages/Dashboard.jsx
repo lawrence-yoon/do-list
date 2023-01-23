@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import List from "../components/features/List";
 import Footer from "../components/features/Footer";
 
-function Dashboard({ token, handleToken = () => {} }) {
+function Dashboard({
+  isLoggedIn,
+  setIsLoggedIn = () => {},
+  token,
+  handleToken = () => {},
+}) {
   const initialListState = [];
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //this countChanges is used to trigger a rerender whenever buttons are pressed.
   const [countChanges, setCountChanges] = useState(0);
