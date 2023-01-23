@@ -229,25 +229,77 @@ export default function List({
   //Move targeted Note
   //
   function handleMove(ID) {
-    setTextTargeted({
-      id: ID,
-      data: list[ID],
-    });
-    setText(list[ID]);
+    if (isDashBoardList) {
+      const listData = list.find((elem) => elem._id == ID);
+      setTextTargeted({
+        _id: ID,
+        data: listData,
+      });
+      setText(listData);
+    } else {
+      setTextTargeted({
+        id: ID,
+        data: list[ID],
+      });
+      setText(list[ID]);
+    }
     setIsMoveModalOpen(true);
   }
 
+  function handleMoveNoteDB(listMove) {
+    fetch("/api/items/" + textTargeted._id, {
+      method: "PUT",
+      body: JSON.stringify({
+        // title: text.title,
+        // details: text.details,
+        list: listMove,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token.token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        alert("Move note failed");
+      })
+      .finally(() => {
+        const newCount = countChanges + 1;
+        setCountChanges(newCount);
+      });
+  }
+
   function handleMoveLeft() {
-    setListLeft((prevList) => [...prevList, text]);
-    setList((prev) => prev.filter((elem, index) => index != textTargeted.id));
+    if (isDashBoardList) {
+      // alert("handlemoveleft fired");
+      handleMoveNoteDB(left);
+    } else {
+      setListLeft((prevList) => [...prevList, text]);
+      setList((prev) => prev.filter((elem, index) => index != textTargeted.id));
+    }
     setText(initialTextState);
     setTextTargeted({ id: null, data: {} });
     setIsMoveModalOpen(false);
   }
 
   function handleMoveRight() {
-    setListRight((prevList) => [...prevList, text]);
-    setList((prev) => prev.filter((elem, index) => index != textTargeted.id));
+    if (isDashBoardList) {
+      // alert("handlemoveright fired");
+      handleMoveNoteDB(right);
+    } else {
+      setListRight((prevList) => [...prevList, text]);
+      setList((prev) => prev.filter((elem, index) => index != textTargeted.id));
+    }
     setText(initialTextState);
     setTextTargeted({ id: null, data: {} });
     setIsMoveModalOpen(false);

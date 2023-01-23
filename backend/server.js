@@ -179,13 +179,11 @@ app.delete("/api/items/:id", auth, (req, res) => {
       }
       Item.deleteOne({ _id: response._id })
         .then((responseDelete) => {
-          res
-            .status(200)
-            .json({
-              message: "item delete successful",
-              responseDelete,
-              id: response._id,
-            });
+          res.status(200).json({
+            message: "item delete successful",
+            responseDelete,
+            id: response._id,
+          });
         })
         .catch((err) => {
           res.status(400).json({ message: "item delete unsuccessful", err });
@@ -202,7 +200,7 @@ app.delete("/api/items/:id", auth, (req, res) => {
 //this one works even if you dont send the full body aka title details list. im thinking for edit, just send the body. for move, send "list" key and value pair
 //
 app.put("/api/items/:id", auth, (req, res) => {
-  console.log("delete request sent to /api/items/:id");
+  console.log("put request sent to /api/items/:id");
   console.log(req.params.id);
   if (!req.user) {
     return res.status(401).json({ message: "user not found" });
@@ -223,7 +221,7 @@ app.put("/api/items/:id", auth, (req, res) => {
             .json({ message: "item update successful", responseUpdate });
         })
         .catch((err) => {
-          res.status(400).json({ message: "item delete unsuccessful", err });
+          res.status(400).json({ message: "item update unsuccessful", err });
         });
       console.log(response._id);
       // res.status(200).json({ response });

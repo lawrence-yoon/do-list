@@ -56,8 +56,8 @@ function Dashboard({ token, handleToken = () => {} }) {
           setList={setListDo}
           setListLeft={setListDone}
           setListRight={setListDoing}
-          left="Done"
-          right="Doing"
+          left="done"
+          right="doing"
           label="do"
           isDashBoardList={true}
           token={token}
@@ -69,8 +69,8 @@ function Dashboard({ token, handleToken = () => {} }) {
           setList={setListDoing}
           setListLeft={setListDo}
           setListRight={setListDone}
-          left="Do"
-          right="Done"
+          left="do"
+          right="done"
           label="doing"
           isDashBoardList={true}
           token={token}
@@ -82,8 +82,8 @@ function Dashboard({ token, handleToken = () => {} }) {
           setList={setListDone}
           setListLeft={setListDoing}
           setListRight={setListDo}
-          left="Doing"
-          right="Do"
+          left="doing"
+          right="do"
           label="done"
           isDashBoardList={true}
           token={token}
