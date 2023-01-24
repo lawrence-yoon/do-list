@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/db");
 const Item = require("./models/itemModel");
 const User = require("./models/userModel");
+const path = require("path");
 
 connectDB();
 
@@ -228,6 +229,17 @@ app.put("/api/items/:id", auth, (req, res) => {
       res.status(400).json({ message: "item not found", e });
     });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "dist", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please set to NODE_ENV to production"));
+}
 
 app.listen(port, () => {
   console.log(`taskboard listening on port ${port}`);
