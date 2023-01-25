@@ -5,7 +5,7 @@ import { ButtonBurger } from "../ui/Button";
 function Header({ isLoggedIn, token, handleToken = () => {} }) {
   function handleBurger() {
     setToggleBurger((prev) => !prev);
-    alert(toggleBurger);
+    // alert(toggleBurger);
   }
 
   const [toggleBurger, setToggleBurger] = useState(false);
