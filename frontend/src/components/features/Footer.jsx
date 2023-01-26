@@ -5,7 +5,9 @@ function Footer() {
     <div className="flex flex-col items-center">
       <p>
         <i>
-          Frontend made from scratch with React-Router, React-Icons, and Vite.
+          Made from scratch. (Frontend dependencies: React-Router, React-Icons,
+          and Vite. Backend dependencies: JWT, Bcrypt, and Mongoose.) Hosted on
+          cyclic.sh.
         </i>
       </p>
       <p>© Lawrence Yoon 2023</p>
