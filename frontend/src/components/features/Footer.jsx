@@ -2,7 +2,7 @@ import { LinkGithub, LinkLinkedin } from "../ui/Link";
 
 function Footer() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-center">
       <p>
         <i>
           Made from scratch. (Frontend dependencies: React-Router, React-Icons,
