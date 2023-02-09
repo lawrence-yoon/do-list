@@ -111,13 +111,11 @@ function Dashboard({
           />
         </div>
       ) : (
-        <div>
-          <img
-            className="mx-auto mt-3"
-            src="/src/assets/ezgif.com-gif-maker.gif"
-            alt="app demo"
-          />
-        </div>
+        <img
+          className="mx-auto mt-6"
+          src="src/assets/images/ezgif.com-gif-maker.gif"
+          alt="app demo"
+        />
       )}
       <Footer />
     </div>
