@@ -113,7 +113,7 @@ function Dashboard({
       ) : (
         <img
           className="mx-auto mt-6"
-          src="src/assets/images/ezgif.com-gif-maker.gif"
+          src="https://i.imgur.com/mkUq9Zr.gif"
           alt="app demo"
         />
       )}
