@@ -59,54 +59,66 @@ function Dashboard({
       {token && isLoggedIn ? (
         <h2 className="text-center text-xl pt-4">Hello {token.name}</h2>
       ) : (
-        <h2 className="text-center text-xl pt-4">
-          Please log in, or visit the Try-Me page for an offline experience.
-        </h2>
+        <>
+          <h2 className="text-center text-xl pt-4">
+            Please log in, or visit the Try-Me page for an offline experience.
+          </h2>
+        </>
       )}
-      <div className="flex flex-row justify-center p-5 gap-3">
-        <List
-          list={listDo}
-          setList={setListDo}
-          setListLeft={setListDone}
-          setListRight={setListDoing}
-          left="done"
-          right="doing"
-          label="do"
-          isDashBoardList={true}
-          isLoggedIn={isLoggedIn}
-          token={token}
-          countChanges={countChanges}
-          setCountChanges={setCountChanges}
-        />
-        <List
-          list={listDoing}
-          setList={setListDoing}
-          setListLeft={setListDo}
-          setListRight={setListDone}
-          left="do"
-          right="done"
-          label="doing"
-          isDashBoardList={true}
-          isLoggedIn={isLoggedIn}
-          token={token}
-          countChanges={countChanges}
-          setCountChanges={setCountChanges}
-        />
-        <List
-          list={listDone}
-          setList={setListDone}
-          setListLeft={setListDoing}
-          setListRight={setListDo}
-          left="doing"
-          right="do"
-          label="done"
-          isDashBoardList={true}
-          isLoggedIn={isLoggedIn}
-          token={token}
-          countChanges={countChanges}
-          setCountChanges={setCountChanges}
-        />
-      </div>
+      {token && isLoggedIn ? (
+        <div className="flex flex-row justify-center p-5 gap-3">
+          <List
+            list={listDo}
+            setList={setListDo}
+            setListLeft={setListDone}
+            setListRight={setListDoing}
+            left="done"
+            right="doing"
+            label="do"
+            isDashBoardList={true}
+            isLoggedIn={isLoggedIn}
+            token={token}
+            countChanges={countChanges}
+            setCountChanges={setCountChanges}
+          />
+          <List
+            list={listDoing}
+            setList={setListDoing}
+            setListLeft={setListDo}
+            setListRight={setListDone}
+            left="do"
+            right="done"
+            label="doing"
+            isDashBoardList={true}
+            isLoggedIn={isLoggedIn}
+            token={token}
+            countChanges={countChanges}
+            setCountChanges={setCountChanges}
+          />
+          <List
+            list={listDone}
+            setList={setListDone}
+            setListLeft={setListDoing}
+            setListRight={setListDo}
+            left="doing"
+            right="do"
+            label="done"
+            isDashBoardList={true}
+            isLoggedIn={isLoggedIn}
+            token={token}
+            countChanges={countChanges}
+            setCountChanges={setCountChanges}
+          />
+        </div>
+      ) : (
+        <div>
+          <img
+            className="mx-auto mt-3"
+            src="/src/assets/ezgif.com-gif-maker.gif"
+            alt="app demo"
+          />
+        </div>
+      )}
       <Footer />
     </div>
   );
